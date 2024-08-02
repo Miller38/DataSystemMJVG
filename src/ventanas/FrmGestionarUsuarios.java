@@ -10,6 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import pdf.GeneradorPDF;
 
 /**
  *
@@ -74,7 +75,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jTable_usuarios = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         Btn_regresar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Btn_reporte_pdf = new javax.swing.JButton();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,10 +131,15 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         });
         jPanel1.add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Reporte PDF");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, -1));
+        Btn_reporte_pdf.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_reporte_pdf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_reporte_pdf.setText("Reporte PDF");
+        Btn_reporte_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_reporte_pdfActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_reporte_pdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 780, 310));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 410));
@@ -150,6 +156,11 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         FrmNuevoUsuario frmNuevoUsuario = new FrmNuevoUsuario();
         frmNuevoUsuario.setVisible(true);
     }//GEN-LAST:event_Btn_regresarActionPerformed
+
+    private void Btn_reporte_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfActionPerformed
+    GeneradorPDF generadorPdf = new GeneradorPDF();
+   generadorPdf.generarReporteUsuarios();
+    }//GEN-LAST:event_Btn_reporte_pdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,8 +199,8 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_regresar;
+    private javax.swing.JButton Btn_reporte_pdf;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_cabecera;

@@ -4,6 +4,7 @@ import conexion.Conexion;
 import modelo.Usuario;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import pdf.GeneradorPDF;
 import servicios.Utilidades;
 
 public class Ctrl_Usuario {
@@ -201,4 +202,14 @@ public boolean existeUsuario(String username) {
     }
     return existe;
 }
+
+    /*
+ * ------------------------------------------------------------------------------------------------------------------------
+ *                                                               Método para generar reportes PDF
+ * ------------------------------------------------------------------------------------------------------------------------
+     */
+  public void generarReportePDF() {
+        GeneradorPDF generador = new GeneradorPDF();
+        generador.generarReporteUsuarios();
+    }
 }

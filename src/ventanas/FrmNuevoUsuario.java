@@ -27,20 +27,20 @@ import modelo.Usuario;
  */
 public class FrmNuevoUsuario extends javax.swing.JFrame {
 
-      private FileInputStream fis;
+    private FileInputStream fis;
     private int longitudBytes;
-    
+
     public FrmNuevoUsuario() {
-        
-        setUndecorated(true); 
-        
+
+        setUndecorated(true);
+
         initComponents();
-        
+
         this.setSize(711, 528);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
-                 /*
+
+        /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                            Colocar imagen de fondo
     * ------------------------------------------------------------------------------------------------------------------------
@@ -60,8 +60,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_Wallpaper.setIcon(icono);
         // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
-        
-                 // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
+
+        // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/images/fondo3.jpg");
 // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
@@ -77,7 +77,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_cabecera.setIcon(icono_);
 // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
-
 
     }
 
@@ -367,12 +366,12 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         Cmb_tipo_nivel.setBackground(new java.awt.Color(255, 255, 255));
         Cmb_tipo_nivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cmb_tipo_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion", "Administrador", "Auxiliar" }));
+        Cmb_tipo_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Administrador", "Auxiliar" }));
         getContentPane().add(Cmb_tipo_nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 170, -1));
 
         Cmb_estatus.setBackground(new java.awt.Color(255, 255, 255));
         Cmb_estatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cmb_estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estatus", "Activo", "Inactivo" }));
+        Cmb_estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Activo", "Inactivo" }));
         getContentPane().add(Cmb_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 170, -1));
 
         jLabel_foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -410,23 +409,23 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_ver_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosActionPerformed
-       FrmGestionarUsuarios frmGestionarUsuarios =  new FrmGestionarUsuarios();
-       frmGestionarUsuarios.setVisible(true);
+        FrmGestionarUsuarios frmGestionarUsuarios = new FrmGestionarUsuarios();
+        frmGestionarUsuarios.setVisible(true);
     }//GEN-LAST:event_Btn_ver_usuariosActionPerformed
 
     private void txt_nombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_nombreMouseEntered
-         txt_nombre.setBackground(Color.black);
+        txt_nombre.setBackground(Color.black);
         txt_nombre.setForeground(Color.white);
     }//GEN-LAST:event_txt_nombreMouseEntered
 
     private void txt_nombreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_nombreMouseExited
-       txt_nombre.setBackground(Color.white);
+        txt_nombre.setBackground(Color.white);
         txt_nombre.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_nombreMouseExited
 
     private void Btn_regresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseEntered
         Btn_regresar.setBackground(new Color(0, 153, 204));
-       Btn_regresar.setForeground(Color.white);
+        Btn_regresar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_regresarMouseEntered
 
     private void Btn_regresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseExited
@@ -436,56 +435,56 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseEntered
         Btn_guardar.setBackground(new Color(0, 153, 204));
-       Btn_guardar.setForeground(Color.white);
+        Btn_guardar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_guardarMouseEntered
 
     private void Btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseExited
-          Btn_guardar.setBackground(Color.white);
+        Btn_guardar.setBackground(Color.white);
         Btn_guardar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_guardarMouseExited
 
     private void Btn_actualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseEntered
-       Btn_actualizar.setBackground(new Color(0, 153, 204));
-       Btn_actualizar.setForeground(Color.white);
+        Btn_actualizar.setBackground(new Color(0, 153, 204));
+        Btn_actualizar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_actualizarMouseEntered
 
     private void Btn_actualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseExited
-          Btn_actualizar.setBackground(Color.white);
+        Btn_actualizar.setBackground(Color.white);
         Btn_actualizar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_actualizarMouseExited
 
     private void Btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseEntered
         Btn_eliminar.setBackground(new Color(0, 153, 204));
-       Btn_eliminar.setForeground(Color.white);
+        Btn_eliminar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_eliminarMouseEntered
 
     private void Btn_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseExited
-          Btn_eliminar.setBackground(Color.white);
+        Btn_eliminar.setBackground(Color.white);
         Btn_eliminar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_eliminarMouseExited
 
     private void Btn_ver_usuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosMouseEntered
         Btn_ver_usuarios.setBackground(new Color(0, 153, 204));
-       Btn_ver_usuarios.setForeground(Color.white);
+        Btn_ver_usuarios.setForeground(Color.white);
     }//GEN-LAST:event_Btn_ver_usuariosMouseEntered
 
     private void Btn_ver_usuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosMouseExited
-          Btn_ver_usuarios.setBackground(Color.white);
+        Btn_ver_usuarios.setBackground(Color.white);
         Btn_ver_usuarios.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_ver_usuariosMouseExited
 
     private void Btn_buscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseEntered
         Btn_buscar.setBackground(new Color(0, 153, 204));
-       Btn_buscar.setForeground(Color.white);
+        Btn_buscar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_buscarMouseEntered
 
     private void Btn_buscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseExited
-          Btn_buscar.setBackground(Color.white);
+        Btn_buscar.setBackground(Color.white);
         Btn_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_buscarMouseExited
 
     private void txt_emailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_emailMouseEntered
-         txt_email.setBackground(Color.black);
+        txt_email.setBackground(Color.black);
         txt_email.setForeground(Color.white);
     }//GEN-LAST:event_txt_emailMouseEntered
 
@@ -495,7 +494,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_emailMouseExited
 
     private void txt_telefonoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_telefonoMouseEntered
-         txt_telefono.setBackground(Color.black);
+        txt_telefono.setBackground(Color.black);
         txt_telefono.setForeground(Color.white);
     }//GEN-LAST:event_txt_telefonoMouseEntered
 
@@ -515,7 +514,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usernameMouseExited
 
     private void txt_passwordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_passwordMouseEntered
-         txt_password.setBackground(Color.black);
+        txt_password.setBackground(Color.black);
         txt_password.setForeground(Color.white);
     }//GEN-LAST:event_txt_passwordMouseEntered
 
@@ -525,7 +524,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordMouseExited
 
     private void txt_registrado_porMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_registrado_porMouseEntered
-         txt_registrado_por.setBackground(new Color(52, 52, 52));
+        txt_registrado_por.setBackground(new Color(52, 52, 52));
         txt_registrado_por.setForeground(Color.white);
     }//GEN-LAST:event_txt_registrado_porMouseEntered
 
@@ -536,38 +535,38 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void jLabel_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_fotoMouseClicked
         /// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
-    JFileChooser archivo = new JFileChooser();
-    // Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
-    archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    // Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
-    int estado = archivo.showOpenDialog(null);
-    // Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
-    if (estado == JFileChooser.APPROVE_OPTION) {
-        try {
-            // Obtiene el archivo seleccionado
-            File file = archivo.getSelectedFile();
-            // Crea un FileInputStream para leer el archivo seleccionado
-            fis = new FileInputStream(file);
-            // Almacena la longitud del archivo seleccionado en bytes
-            this.longitudBytes = (int) file.length();
-            // Lee la imagen del archivo seleccionado
-            Image icono = ImageIO.read(file);
-            // Escala la imagen a las dimensiones del jLabel_foto
-            Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
-            // Establece la imagen escalada como el ícono del jLabel_foto
-            jLabel_foto.setIcon(new ImageIcon(scaledIcono));
-            // Asigna la ruta del archivo a txt_ruta para referencia futura
-           
-        } catch (FileNotFoundException e) {
-            // Maneja la excepción si el archivo no se encuentra
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException e) {
-            // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+        JFileChooser archivo = new JFileChooser();
+        // Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
+        archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
+        int estado = archivo.showOpenDialog(null);
+        // Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
+        if (estado == JFileChooser.APPROVE_OPTION) {
+            try {
+                // Obtiene el archivo seleccionado
+                File file = archivo.getSelectedFile();
+                // Crea un FileInputStream para leer el archivo seleccionado
+                fis = new FileInputStream(file);
+                // Almacena la longitud del archivo seleccionado en bytes
+                this.longitudBytes = (int) file.length();
+                // Lee la imagen del archivo seleccionado
+                Image icono = ImageIO.read(file);
+                // Escala la imagen a las dimensiones del jLabel_foto
+                Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
+                // Establece la imagen escalada como el ícono del jLabel_foto
+                jLabel_foto.setIcon(new ImageIcon(scaledIcono));
+                // Asigna la ruta del archivo a txt_ruta para referencia futura
+
+            } catch (FileNotFoundException e) {
+                // Maneja la excepción si el archivo no se encuentra
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
     }//GEN-LAST:event_jLabel_fotoMouseClicked
 
     /**
@@ -664,10 +663,15 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 || txt_telefono.getText().trim().isEmpty()
                 || txt_username.getText().trim().isEmpty()
                 || txt_password.getText().trim().isEmpty()
-                || txt_registrado_por.getText().trim().isEmpty()
-                || Cmb_tipo_nivel.getSelectedItem() == null || Cmb_tipo_nivel.getSelectedItem().toString().equals("Seleccione el nivel")
-                || Cmb_estatus.getSelectedItem() == null || Cmb_estatus.getSelectedItem().toString().equals("Seleccione el estatus")) {
+                || txt_registrado_por.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados.");
+            return false;
+        }
+
+        // Validar selección de combobox
+        if (Cmb_tipo_nivel.getSelectedIndex() == 0
+                || Cmb_estatus.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un nivel y un estatus.");
             return false;
         }
 
@@ -704,60 +708,59 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 //                                                         Método para guardar un usuario
 //----------------------------------------------------------------------------------------------------------------------//    
     private void guardarUsuario() {
-    // llamamos al controlador usuario
-    Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-    // llamamos la clase Usuario
-    Usuario usuario = new Usuario();
+        // llamamos al controlador usuario
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        // llamamos la clase Usuario
+        Usuario usuario = new Usuario();
 
-    // validamos que los campos no estén vacíos y se haya seleccionado todo
-    if (!validarCampos()) {
-        return;
-    }
-
-    // verificar si el usuario ya existe en la base de datos
-    String username = txt_username.getText().trim();
-    if (usuarioExiste(username)) {
-        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe. Por favor, elija otro.");
-        return; // Salir del método si el usuario ya existe
-    }
-
-    // ahora asignamos lo que el usuario ingresó al usuario
-    usuario.setNombre_usuario(txt_nombre.getText().trim());
-    usuario.setEmail(txt_email.getText().trim());
-    usuario.setTelefono(txt_telefono.getText().trim());
-    usuario.setUsername(username);
-    usuario.setPassword(txt_password.getText().trim());
-    usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
-    usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
-    usuario.setRegistrado_por(txt_registrado_por.getText().trim());
-    
-    // Convertir la imagen a un array de bytes
-    byte[] imagenBytes = null;
-    if (fis != null) {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                baos.write(buffer, 0, bytesRead);
-            }
-            imagenBytes = baos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+        // validamos que los campos no estén vacíos y se haya seleccionado todo
+        if (!validarCampos()) {
             return;
         }
-    }
-    usuario.setImagen(imagenBytes); // Asignar imagen a Usuario
 
+        // verificar si el usuario ya existe en la base de datos
+        String username = txt_username.getText().trim();
+        if (usuarioExiste(username)) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe. Por favor, elija otro.");
+            return; // Salir del método si el usuario ya existe
+        }
 
-    if (controlUsuario.guardarUsuario(usuario)) {
-        JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente.");
-        limpiarCampos(); // Limpiar los campos después de guardar
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al guardar el usuario.");
+        // ahora asignamos lo que el usuario ingresó al usuario
+        usuario.setNombre_usuario(txt_nombre.getText().trim());
+        usuario.setEmail(txt_email.getText().trim());
+        usuario.setTelefono(txt_telefono.getText().trim());
+        usuario.setUsername(username);
+        usuario.setPassword(txt_password.getText().trim());
+        usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
+        usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
+        usuario.setRegistrado_por(txt_registrado_por.getText().trim());
+
+        // Convertir la imagen a un array de bytes
+        byte[] imagenBytes = null;
+        if (fis != null) {
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    baos.write(buffer, 0, bytesRead);
+                }
+                imagenBytes = baos.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        usuario.setImagen(imagenBytes); // Asignar imagen a Usuario
+
+        if (controlUsuario.guardarUsuario(usuario)) {
+            JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente.");
+            limpiarCampos(); // Limpiar los campos después de guardar
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al guardar el usuario.");
+        }
     }
-}
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Método para actualizar un usuario
@@ -783,7 +786,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
         usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
         usuario.setRegistrado_por(txt_registrado_por.getText().trim());
-        
 
         if (controlUsuario.actualizarUsuario(usuario)) {
             JOptionPane.showMessageDialog(this, "Usuario actualizado exitosamente.");
@@ -793,84 +795,82 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         }
     }
 
- //----------------------------------------------------------------------------------------------------------------------//
+    //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Método para eliminar un usuario
 //----------------------------------------------------------------------------------------------------------------------//
-private void eliminarUsuario() {
-    // llamamos al controlador usuario
-    Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-    int idUsuario = Integer.parseInt(txt_id_usuario.getText().trim());
+    private void eliminarUsuario() {
+        // llamamos al controlador usuario
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        int idUsuario = Integer.parseInt(txt_id_usuario.getText().trim());
 
-    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el usuario?", "Confirmación", JOptionPane.YES_NO_OPTION);
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        if (controlUsuario.eliminarUsuario(idUsuario)) {
-            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente.");
-            limpiarCampos(); // Limpiar los campos después de eliminar
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el usuario.");
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el usuario?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (controlUsuario.eliminarUsuario(idUsuario)) {
+                JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente.");
+                limpiarCampos(); // Limpiar los campos después de eliminar
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al eliminar el usuario.");
+            }
         }
     }
-}
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Método para buscar un usuario por ID
 //----------------------------------------------------------------------------------------------------------------------//
-private void buscarUsuarioPorID() {
-    // llamamos al controlador usuario
-    Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-    int idUsuario = Integer.parseInt(txt_id_usuario.getText().trim());
+    private void buscarUsuarioPorID() {
+        // llamamos al controlador usuario
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        int idUsuario = Integer.parseInt(txt_id_usuario.getText().trim());
 
-    Usuario usuario = controlUsuario.obtenerUsuarioPorID(idUsuario);
-    if (usuario != null) {
-        txt_nombre.setText(usuario.getNombre_usuario());
-        txt_email.setText(usuario.getEmail());
-        txt_telefono.setText(usuario.getTelefono());
-        txt_username.setText(usuario.getUsername());
-        txt_password.setText(usuario.getPassword()); // Nota: generalmente no se muestra la contraseña en un campo de texto
-        Cmb_tipo_nivel.setSelectedItem(usuario.getTipo_nivel());
-        Cmb_estatus.setSelectedItem(usuario.getEstatus());
-        txt_registrado_por.setText(usuario.getRegistrado_por());
-        
-        // Mostrar la imagen en jLabel_foto
-        mostrarImagen(usuario.getImagen());
-        
-    } else {
-        JOptionPane.showMessageDialog(this, "Usuario no encontrado.");
+        Usuario usuario = controlUsuario.obtenerUsuarioPorID(idUsuario);
+        if (usuario != null) {
+            txt_nombre.setText(usuario.getNombre_usuario());
+            txt_email.setText(usuario.getEmail());
+            txt_telefono.setText(usuario.getTelefono());
+            txt_username.setText(usuario.getUsername());
+            txt_password.setText(usuario.getPassword()); // Nota: generalmente no se muestra la contraseña en un campo de texto
+            Cmb_tipo_nivel.setSelectedItem(usuario.getTipo_nivel());
+            Cmb_estatus.setSelectedItem(usuario.getEstatus());
+            txt_registrado_por.setText(usuario.getRegistrado_por());
+
+            // Mostrar la imagen en jLabel_foto
+            mostrarImagen(usuario.getImagen());
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado.");
+        }
     }
-}
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                    Método para comparar si el usuario existe
 //----------------------------------------------------------------------------------------------------------------------//
-private boolean usuarioExiste(String username) {
-    Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-    return controlUsuario.existeUsuario(username);
-}
+    private boolean usuarioExiste(String username) {
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        return controlUsuario.existeUsuario(username);
+    }
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                    Método para mostrar laimagen del usuario
 //----------------------------------------------------------------------------------------------------------------------//
+    private void mostrarImagen(byte[] imagenBytes) {
+        if (imagenBytes != null) {
+            try {
+                // Convertir el array de bytes a un objeto Image
+                ByteArrayInputStream bais = new ByteArrayInputStream(imagenBytes);
+                Image imagen = ImageIO.read(bais);
 
+                // Escalar la imagen a las dimensiones del jLabel_foto
+                Image scaledImagen = imagen.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
 
-private void mostrarImagen(byte[] imagenBytes) {
-    if (imagenBytes != null) {
-        try {
-            // Convertir el array de bytes a un objeto Image
-            ByteArrayInputStream bais = new ByteArrayInputStream(imagenBytes);
-            Image imagen = ImageIO.read(bais);
-
-            // Escalar la imagen a las dimensiones del jLabel_foto
-            Image scaledImagen = imagen.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
-
-            // Establecer la imagen escalada como el ícono del jLabel_foto
-            jLabel_foto.setIcon(new ImageIcon(scaledImagen));
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al cargar la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                // Establecer la imagen escalada como el ícono del jLabel_foto
+                jLabel_foto.setIcon(new ImageIcon(scaledImagen));
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al cargar la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            jLabel_foto.setIcon(null); // Si no hay imagen, eliminar el ícono
         }
-    } else {
-        jLabel_foto.setIcon(null); // Si no hay imagen, eliminar el ícono
     }
-}
 
 }

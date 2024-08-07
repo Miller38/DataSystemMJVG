@@ -1,13 +1,16 @@
 package ventanas;
 
 import conexion.Conexion;
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import pdf.GeneradorPDF;
@@ -19,33 +22,39 @@ import pdf.GeneradorPDF;
 public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
     public FrmGestionarUsuarios() {
+
+        setUndecorated(true);
+
         initComponents();
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         
-                     /*
+         // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
+
+        /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                            Colocar imagen de fondo
     * ------------------------------------------------------------------------------------------------------------------------
          */
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
-        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
-        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
-        // Obtiene la imagen del ImageIcon
-        Icon icono = new ImageIcon(
-                wallpaper.getImage().getScaledInstance( // Escala la imagen
-                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
-                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
-                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
-                )
-        );
-        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
-        jLabel_Wallpaper.setIcon(icono);
-        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
-        this.repaint();
-        
-             // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
+//        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
+//        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+//        // Obtiene la imagen del ImageIcon
+//        Icon icono = new ImageIcon(
+//                wallpaper.getImage().getScaledInstance( // Escala la imagen
+//                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
+//                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
+//                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+//                )
+//        );
+//        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+//        jLabel_Wallpaper.setIcon(icono);
+//        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+//        this.repaint();
+
+        // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/images/fondo3.jpg");
 // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
@@ -69,13 +78,15 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel_cabecera = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_usuarios = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Btn_listarUsuarios = new javax.swing.JButton();
         Btn_regresar = new javax.swing.JButton();
         Btn_reporte_pdf = new javax.swing.JButton();
+        Btn_minimizar = new javax.swing.JButton();
+        Btn_cerrar = new javax.swing.JButton();
+        jLabel_cabecera = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,7 +97,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Lista de usuarios");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
-        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -110,20 +120,36 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 760, 230));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Listar usuarios");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Btn_listarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_listarUsuarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_listarUsuarios.setText("Listar usuarios");
+        Btn_listarUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_listarUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_listarUsuariosMouseExited(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, -1, -1));
+        Btn_listarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_listarUsuariosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_listarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, -1, -1));
 
         Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
         Btn_regresar.setText("  Regresar");
+        Btn_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_regresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_regresarMouseExited(evt);
+            }
+        });
         Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_regresarActionPerformed(evt);
@@ -134,6 +160,14 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         Btn_reporte_pdf.setBackground(new java.awt.Color(255, 255, 255));
         Btn_reporte_pdf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_reporte_pdf.setText("Reporte PDF");
+        Btn_reporte_pdf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_reporte_pdfMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_reporte_pdfMouseExited(evt);
+            }
+        });
         Btn_reporte_pdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_reporte_pdfActionPerformed(evt);
@@ -142,14 +176,53 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jPanel1.add(Btn_reporte_pdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 780, 310));
+
+        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_minimizar.setText("-");
+        Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseExited(evt);
+            }
+        });
+        Btn_minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_minimizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+
+        Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_cerrar.setText("x");
+        Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseExited(evt);
+            }
+        });
+        Btn_cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
+        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Btn_listarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_listarUsuariosActionPerformed
         CargarTablaUsuarios();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Btn_listarUsuariosActionPerformed
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         dispose();
@@ -158,9 +231,69 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_reporte_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfActionPerformed
-    GeneradorPDF generadorPdf = new GeneradorPDF();
-   generadorPdf.generarReporteUsuarios();
+        GeneradorPDF generadorPdf = new GeneradorPDF();
+        generadorPdf.generarReporteUsuarios();
     }//GEN-LAST:event_Btn_reporte_pdfActionPerformed
+
+    private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
+        dispose();
+        FrmNuevoUsuario frmNuevoUsuario = new FrmNuevoUsuario();
+        frmNuevoUsuario.setVisible(true);
+    }//GEN-LAST:event_Btn_cerrarActionPerformed
+
+    private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_Btn_minimizarActionPerformed
+
+    private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
+        Btn_minimizar.setBackground(new Color(0, 153, 204));
+        Btn_minimizar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_minimizarMouseEntered
+
+    private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
+        Btn_minimizar.setBackground(Color.white);
+        Btn_minimizar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_minimizarMouseExited
+
+    private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
+        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_cerrarMouseEntered
+
+    private void Btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseExited
+        Btn_cerrar.setBackground(Color.white);
+        Btn_cerrar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_cerrarMouseExited
+
+    private void Btn_listarUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_listarUsuariosMouseEntered
+         Btn_listarUsuarios.setBackground(new Color(0, 153, 204));
+        Btn_listarUsuarios.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_listarUsuariosMouseEntered
+
+    private void Btn_listarUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_listarUsuariosMouseExited
+        Btn_listarUsuarios.setBackground(Color.white);
+        Btn_listarUsuarios.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_listarUsuariosMouseExited
+
+    private void Btn_reporte_pdfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfMouseEntered
+         Btn_reporte_pdf.setBackground(new Color(0, 153, 204));
+        Btn_reporte_pdf.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_reporte_pdfMouseEntered
+
+    private void Btn_reporte_pdfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfMouseExited
+        Btn_reporte_pdf.setBackground(Color.white);
+        Btn_reporte_pdf.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_reporte_pdfMouseExited
+
+    private void Btn_regresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseEntered
+          Btn_regresar.setBackground(new Color(0, 153, 204));
+        Btn_regresar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_regresarMouseEntered
+
+    private void Btn_regresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseExited
+         Btn_regresar.setBackground(Color.white);
+        Btn_regresar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_regresarMouseExited
 
     /**
      * @param args the command line arguments
@@ -198,9 +331,11 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_cerrar;
+    private javax.swing.JButton Btn_listarUsuarios;
+    private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_regresar;
     private javax.swing.JButton Btn_reporte_pdf;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_cabecera;

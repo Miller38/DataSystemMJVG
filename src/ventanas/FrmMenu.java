@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
 
 /**
  *
@@ -9,9 +10,7 @@ import java.awt.geom.RoundRectangle2D;
  */
 public class FrmMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmMenu
-     */
+    
     public FrmMenu() {
 
         // Metodo para poner transparente el jframe
@@ -34,9 +33,15 @@ public class FrmMenu extends javax.swing.JFrame {
         pnlMenu = new javax.swing.JPanel();
         Btn_odontologos = new javax.swing.JButton();
         Btn_cerrar_sesion = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         BtnMenu = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Btn_minimizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,28 +84,67 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Inventario");
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setText("Citas");
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton3.setText("Facturacion");
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton5.setText("Pacientes");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/perfil-del-usuario.png"))); // NOI18N
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_odontologos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Btn_odontologos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2))
                 .addGap(22, 22, 22))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
-                .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
-        jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
+        jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 510));
 
         BtnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menus.png"))); // NOI18N
         BtnMenu.setBorder(null);
@@ -120,7 +164,7 @@ public class FrmMenu extends javax.swing.JFrame {
                 BtnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
+        jPanel1.add(BtnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -139,12 +183,31 @@ public class FrmMenu extends javax.swing.JFrame {
                 Btn_cerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 50, 30));
+        jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 50, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sistema de informacion MJVG");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_minimizar.setText("-");
+        Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseExited(evt);
+            }
+        });
+        Btn_minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_minimizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,6 +283,25 @@ public class FrmMenu extends javax.swing.JFrame {
         Btn_cerrar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_cerrarMouseExited
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        FrmPacientes frmPacientes = new FrmPacientes();
+        frmPacientes.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
+        Btn_minimizar.setBackground(new Color(0, 153, 204));
+        Btn_minimizar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_minimizarMouseEntered
+
+    private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
+         this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_Btn_minimizarActionPerformed
+
+    private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
+       Btn_minimizar.setBackground(Color.white);
+        Btn_minimizar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_minimizarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -259,8 +341,14 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JButton BtnMenu;
     private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_cerrar_sesion;
+    private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_odontologos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables

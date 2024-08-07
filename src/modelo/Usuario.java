@@ -17,10 +17,10 @@ public class Usuario {
     private String tipo_nivel;
     private String estatus;    
     private String registrado_por;
-     private byte[] imagen; // Imagen del usuario
-     private String ruta;
-    private java.util.Date fecha_creacion;
-    private java.util.Date ultima_sesion;
+    private byte[] imagen; // Imagen del usuario
+    private String ruta;
+    private Date fecha_creacion;
+    private Date ultima_sesion;
 
     public Usuario() {
     }
@@ -145,5 +145,5 @@ public class Usuario {
         this.ultima_sesion = ultima_sesion;
     }
 
-     
+    
 }

@@ -3,21 +3,21 @@ package ventanas;
 import controlador.Ctrl_Usuario;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.geom.RoundRectangle2D;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
-import java.sql.SQLException; // Importación de SQLException
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -36,30 +36,40 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         initComponents();
 
+        String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();        
+         jLabel_usuario.setText("Usuario: " + nombreUsuario);
+         
+//         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
+//         jLabel_TipoNivel.setText("Tipo Nivel :" + tipoNivel);
+
+             
         this.setSize(711, 528);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+         // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
 
         /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                            Colocar imagen de fondo
     * ------------------------------------------------------------------------------------------------------------------------
          */
-        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
-        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
-        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
-        // Obtiene la imagen del ImageIcon
-        Icon icono = new ImageIcon(
-                wallpaper.getImage().getScaledInstance( // Escala la imagen
-                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
-                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
-                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
-                )
-        );
-        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
-        jLabel_Wallpaper.setIcon(icono);
-        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
-        this.repaint();
+//        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+//        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
+//        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+//        // Obtiene la imagen del ImageIcon
+//        Icon icono = new ImageIcon(
+//                wallpaper.getImage().getScaledInstance( // Escala la imagen
+//                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
+//                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
+//                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+//                )
+//        );
+//        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+//        jLabel_Wallpaper.setIcon(icono);
+//        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+//        this.repaint();
 
         // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
@@ -79,6 +89,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         this.repaint();
 
     }
+    
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -103,10 +115,13 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         txt_fecha_creacion = new javax.swing.JTextField();
         txt_ultima_sesion = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        Btn_cerrar = new javax.swing.JButton();
+        Btn_minimizar = new javax.swing.JButton();
+        jLabel_usuario = new javax.swing.JLabel();
+        jLabel_TipoNivel = new javax.swing.JLabel();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txt_id_usuario = new javax.swing.JTextField();
-        Btn_buscar = new javax.swing.JButton();
         Btn_regresar = new javax.swing.JButton();
         Btn_guardar = new javax.swing.JButton();
         Btn_actualizar = new javax.swing.JButton();
@@ -115,6 +130,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         Cmb_tipo_nivel = new javax.swing.JComboBox<>();
         Cmb_estatus = new javax.swing.JComboBox<>();
         jLabel_foto = new javax.swing.JLabel();
+        Btn_buscar = new javax.swing.JButton();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -163,6 +179,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_nombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_nombreMouseEntered(evt);
@@ -175,6 +192,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_email.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_email.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_emailMouseEntered(evt);
@@ -187,6 +205,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_telefono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_telefonoMouseEntered(evt);
@@ -199,6 +218,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_username.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_username.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_usernameMouseEntered(evt);
@@ -211,6 +231,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_password.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_passwordMouseEntered(evt);
@@ -223,6 +244,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_registrado_por.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_registrado_por.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_registrado_por.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_registrado_por.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txt_registrado_porMouseEntered(evt);
@@ -235,11 +257,13 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_fecha_creacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_fecha_creacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_fecha_creacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_fecha_creacion.setEnabled(false);
         getContentPane().add(txt_fecha_creacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 140, -1));
 
         txt_ultima_sesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_ultima_sesion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_ultima_sesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_ultima_sesion.setEnabled(false);
         getContentPane().add(txt_ultima_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 140, -1));
 
@@ -247,6 +271,52 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Gestionar Usuarios");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+
+        Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_cerrar.setText("x");
+        Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseExited(evt);
+            }
+        });
+        Btn_cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 50, -1));
+
+        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_minimizar.setText("-");
+        Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseExited(evt);
+            }
+        });
+        Btn_minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_minimizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 40, -1));
+
+        jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 190, 20));
+
+        jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_TipoNivel.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 180, 20));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 50));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -255,25 +325,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         txt_id_usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_id_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_id_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_id_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 80, -1));
-
-        Btn_buscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/papel.png"))); // NOI18N
-        Btn_buscar.setText("  Buscar");
-        Btn_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_buscarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_buscarMouseExited(evt);
-            }
-        });
-        Btn_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_buscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 120, -1));
 
         Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
@@ -374,13 +427,22 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         Cmb_estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Activo", "Inactivo" }));
         getContentPane().add(Cmb_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 170, -1));
 
-        jLabel_foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel_foto.setToolTipText("Click para agregar la imagen del usuario");
+        jLabel_foto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_fotoMouseClicked(evt);
             }
         });
         getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 170, 140));
+
+        Btn_buscar.setText("Buscar");
+        Btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 100, -1));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 530));
 
         pack();
@@ -397,10 +459,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private void Btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminarActionPerformed
         eliminarUsuario();
     }//GEN-LAST:event_Btn_eliminarActionPerformed
-
-    private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
-        buscarUsuarioPorID();
-    }//GEN-LAST:event_Btn_buscarActionPerformed
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         dispose();
@@ -472,16 +530,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         Btn_ver_usuarios.setBackground(Color.white);
         Btn_ver_usuarios.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_ver_usuariosMouseExited
-
-    private void Btn_buscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseEntered
-        Btn_buscar.setBackground(new Color(0, 153, 204));
-        Btn_buscar.setForeground(Color.white);
-    }//GEN-LAST:event_Btn_buscarMouseEntered
-
-    private void Btn_buscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseExited
-        Btn_buscar.setBackground(Color.white);
-        Btn_buscar.setForeground(Color.BLACK);
-    }//GEN-LAST:event_Btn_buscarMouseExited
 
     private void txt_emailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_emailMouseEntered
         txt_email.setBackground(Color.black);
@@ -569,6 +617,40 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel_fotoMouseClicked
 
+    private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
+       dispose();
+        FrmAdmin frmAdmin = new FrmAdmin();
+        frmAdmin.setVisible(true);
+    }//GEN-LAST:event_Btn_cerrarActionPerformed
+
+    private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
+         this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_Btn_minimizarActionPerformed
+
+    private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
+        Btn_minimizar.setBackground(new Color(0, 153, 204));
+        Btn_minimizar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_minimizarMouseEntered
+
+    private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
+       Btn_minimizar.setBackground(Color.white);
+        Btn_minimizar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_minimizarMouseExited
+
+    private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
+        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_cerrarMouseEntered
+
+    private void Btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseExited
+        Btn_cerrar.setBackground(Color.white);
+        Btn_cerrar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_cerrarMouseExited
+
+    private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
+        buscarUsuarioPorID();
+    }//GEN-LAST:event_Btn_buscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -607,8 +689,10 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_actualizar;
     private javax.swing.JButton Btn_buscar;
+    private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_eliminar;
     private javax.swing.JButton Btn_guardar;
+    private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_regresar;
     private javax.swing.JButton Btn_ver_usuarios;
     private javax.swing.JComboBox<String> Cmb_estatus;
@@ -625,9 +709,11 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_TipoNivel;
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_cabecera;
     private javax.swing.JLabel jLabel_foto;
+    private javax.swing.JLabel jLabel_usuario;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_fecha_creacion;
     private javax.swing.JTextField txt_id_usuario;
@@ -669,9 +755,14 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         }
 
         // Validar selección de combobox
-        if (Cmb_tipo_nivel.getSelectedIndex() == 0
-                || Cmb_estatus.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un nivel y un estatus.");
+        if (Cmb_tipo_nivel.getSelectedIndex() == 0 ) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un nivel.");
+            return false;
+        }
+        
+         // Validar selección de combobox
+        if (Cmb_estatus.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un estatus.");
             return false;
         }
 
@@ -734,6 +825,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
         usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
         usuario.setRegistrado_por(txt_registrado_por.getText().trim());
+        usuario.setFecha_creacion(new Date()); 
 
         // Convertir la imagen a un array de bytes
         byte[] imagenBytes = null;
@@ -786,6 +878,26 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
         usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
         usuario.setRegistrado_por(txt_registrado_por.getText().trim());
+        
+      // Convertir la imagen a un array de bytes
+    byte[] imagenBytes = null;
+    if (fis != null) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+            imagenBytes = baos.toByteArray();
+            usuario.setImagen(imagenBytes); // Asignar imagen a Usuario
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+
 
         if (controlUsuario.actualizarUsuario(usuario)) {
             JOptionPane.showMessageDialog(this, "Usuario actualizado exitosamente.");

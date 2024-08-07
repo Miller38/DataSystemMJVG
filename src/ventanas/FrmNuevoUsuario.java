@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +21,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
+import servicios.Utilidades;
 
 /**
  *
@@ -36,19 +38,17 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         initComponents();
 
-        String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();        
-         jLabel_usuario.setText("Usuario: " + nombreUsuario);
-         
+        String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
+        jLabel_usuario.setText("Usuario: " + nombreUsuario);
+
 //         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 //         jLabel_TipoNivel.setText("Tipo Nivel :" + tipoNivel);
-
-             
         this.setSize(711, 528);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
-         // Redondear las esquinas del jframe 
-        setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
+
+        // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
 
         /*
     * ------------------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 //        jLabel_Wallpaper.setIcon(icono);
 //        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
 //        this.repaint();
-
         // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/images/fondo3.jpg");
@@ -89,8 +88,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         this.repaint();
 
     }
-    
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,55 +126,55 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         Btn_ver_usuarios = new javax.swing.JButton();
         Cmb_tipo_nivel = new javax.swing.JComboBox<>();
         Cmb_estatus = new javax.swing.JComboBox<>();
-        jLabel_foto = new javax.swing.JLabel();
         Btn_buscar = new javax.swing.JButton();
+        jLabel_foto = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Nombre :");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Email :");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Telefono :");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Username :");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Password :");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Tipo de Nivel :");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Estatus :");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Registrado por :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Fecha de creacion :");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Ultima sesion :");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
 
-        txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_nombre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +187,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 190, -1));
 
-        txt_email.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_email.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_email.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,7 +200,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 190, -1));
 
-        txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_telefono.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,7 +213,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 170, -1));
 
-        txt_username.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_username.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_username.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_username.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,7 +226,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 170, -1));
 
-        txt_password.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_password.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -242,7 +239,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 170, -1));
 
-        txt_registrado_por.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_registrado_por.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_registrado_por.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_registrado_por.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_registrado_por.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,13 +252,13 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(txt_registrado_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 140, -1));
 
-        txt_fecha_creacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_fecha_creacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_fecha_creacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_fecha_creacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_fecha_creacion.setEnabled(false);
         getContentPane().add(txt_fecha_creacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 140, -1));
 
-        txt_ultima_sesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_ultima_sesion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_ultima_sesion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_ultima_sesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_ultima_sesion.setEnabled(false);
@@ -319,16 +316,16 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 180, 20));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 50));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("ID :");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 30, 20));
 
-        txt_id_usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_id_usuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_id_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_id_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_id_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 80, -1));
 
-        Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_regresar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
         Btn_regresar.setText("  Regresar");
         Btn_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -346,7 +343,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 120, -1));
 
-        Btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_guardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardar-el-archivo.png"))); // NOI18N
         Btn_guardar.setText("  Guardar");
         Btn_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -364,7 +361,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 110, -1));
 
-        Btn_actualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_actualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar-flecha.png"))); // NOI18N
         Btn_actualizar.setText("  Editar");
         Btn_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -382,7 +379,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 100, -1));
 
-        Btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_eliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
         Btn_eliminar.setText("  Eliminar");
         Btn_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -400,7 +397,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 110, -1));
 
-        Btn_ver_usuarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_ver_usuarios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_ver_usuarios.setText("Ver usuarios");
         Btn_ver_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -418,31 +415,41 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         getContentPane().add(Btn_ver_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, 110, -1));
 
         Cmb_tipo_nivel.setBackground(new java.awt.Color(255, 255, 255));
-        Cmb_tipo_nivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cmb_tipo_nivel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_tipo_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Administrador", "Auxiliar" }));
         getContentPane().add(Cmb_tipo_nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 170, -1));
 
         Cmb_estatus.setBackground(new java.awt.Color(255, 255, 255));
-        Cmb_estatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cmb_estatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Activo", "Inactivo" }));
         getContentPane().add(Cmb_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 170, -1));
 
-        jLabel_foto.setToolTipText("Click para agregar la imagen del usuario");
-        jLabel_foto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_fotoMouseClicked(evt);
+        Btn_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_buscar.setText("Buscar");
+        Btn_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_buscarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_buscarMouseExited(evt);
             }
         });
-        getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 170, 140));
-
-        Btn_buscar.setText("Buscar");
         Btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_buscarActionPerformed(evt);
             }
         });
         getContentPane().add(Btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 100, -1));
+
+        jLabel_foto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_fotoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 160, 140));
+
+        jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 530));
 
         pack();
@@ -581,6 +588,41 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         txt_registrado_por.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_registrado_porMouseExited
 
+    private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
+        dispose();
+        FrmAdmin frmAdmin = new FrmAdmin();
+        frmAdmin.setVisible(true);
+    }//GEN-LAST:event_Btn_cerrarActionPerformed
+
+    private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_Btn_minimizarActionPerformed
+
+    private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
+        Btn_minimizar.setBackground(new Color(0, 153, 204));
+        Btn_minimizar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_minimizarMouseEntered
+
+    private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
+        Btn_minimizar.setBackground(Color.white);
+        Btn_minimizar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_minimizarMouseExited
+
+    private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
+        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_cerrarMouseEntered
+
+    private void Btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseExited
+        Btn_cerrar.setBackground(Color.white);
+        Btn_cerrar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_cerrarMouseExited
+
+    private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
+        buscarUsuarioPorID();
+
+    }//GEN-LAST:event_Btn_buscarActionPerformed
+
     private void jLabel_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_fotoMouseClicked
         /// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
         JFileChooser archivo = new JFileChooser();
@@ -617,39 +659,15 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel_fotoMouseClicked
 
-    private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
-       dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
-    }//GEN-LAST:event_Btn_cerrarActionPerformed
+    private void Btn_buscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseEntered
+        Btn_buscar.setBackground(new Color(0, 153, 204));
+        Btn_buscar.setForeground(Color.white);
+    }//GEN-LAST:event_Btn_buscarMouseEntered
 
-    private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
-         this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_Btn_minimizarActionPerformed
-
-    private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
-        Btn_minimizar.setBackground(new Color(0, 153, 204));
-        Btn_minimizar.setForeground(Color.white);
-    }//GEN-LAST:event_Btn_minimizarMouseEntered
-
-    private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
-       Btn_minimizar.setBackground(Color.white);
-        Btn_minimizar.setForeground(Color.BLACK);
-    }//GEN-LAST:event_Btn_minimizarMouseExited
-
-    private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(0, 153, 204));
-        Btn_cerrar.setForeground(Color.white);
-    }//GEN-LAST:event_Btn_cerrarMouseEntered
-
-    private void Btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseExited
-        Btn_cerrar.setBackground(Color.white);
-        Btn_cerrar.setForeground(Color.BLACK);
-    }//GEN-LAST:event_Btn_cerrarMouseExited
-
-    private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
-        buscarUsuarioPorID();
-    }//GEN-LAST:event_Btn_buscarActionPerformed
+    private void Btn_buscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_buscarMouseExited
+        Btn_buscar.setBackground(Color.white);
+        Btn_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_buscarMouseExited
 
     /**
      * @param args the command line arguments
@@ -755,12 +773,12 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         }
 
         // Validar selección de combobox
-        if (Cmb_tipo_nivel.getSelectedIndex() == 0 ) {
+        if (Cmb_tipo_nivel.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un nivel.");
             return false;
         }
-        
-         // Validar selección de combobox
+
+        // Validar selección de combobox
         if (Cmb_estatus.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un estatus.");
             return false;
@@ -779,6 +797,19 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El correo electrónico no tiene un formato válido.");
             return false;
         }
+        // Validar imagen
+        if (fis == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen.");
+            return false;
+        }
+
+        // Si se está buscando un usuario, permitir que la contraseña esté vacía
+        // Esto es útil para el caso de actualización de usuario cuando no se cambia la contraseña
+        if (txt_password.getText().trim().isEmpty() && Btn_guardar.isEnabled()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         return true;
     }
 
@@ -825,7 +856,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
         usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
         usuario.setRegistrado_por(txt_registrado_por.getText().trim());
-        usuario.setFecha_creacion(new Date()); 
+        usuario.setFecha_creacion(new Date());
 
         // Convertir la imagen a un array de bytes
         byte[] imagenBytes = null;
@@ -842,6 +873,12 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
+            } finally {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         usuario.setImagen(imagenBytes); // Asignar imagen a Usuario
@@ -858,17 +895,15 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 //                                                         Método para actualizar un usuario
 //----------------------------------------------------------------------------------------------------------------------//
     private void actualizarUsuario() {
-        // llamamos al controlador usuario
         Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-        // llamamos la clase Usuario
         Usuario usuario = new Usuario();
 
-        // validamos que los campos no estén vacíos y se haya seleccionado todo
+        // Validamos que los campos no estén vacíos y se haya seleccionado todo
         if (!validarCampos()) {
             return;
         }
 
-        // ahora asignamos lo que el usuario ingresó al usuario
+        // Asignamos lo que el usuario ingresó al usuario
         usuario.setId_usuario(Integer.parseInt(txt_id_usuario.getText().trim())); // Asignar el ID del usuario
         usuario.setNombre_usuario(txt_nombre.getText().trim());
         usuario.setEmail(txt_email.getText().trim());
@@ -878,30 +913,32 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         usuario.setTipo_nivel((String) Cmb_tipo_nivel.getSelectedItem());
         usuario.setEstatus((String) Cmb_estatus.getSelectedItem());
         usuario.setRegistrado_por(txt_registrado_por.getText().trim());
-        
-      // Convertir la imagen a un array de bytes
-    byte[] imagenBytes = null;
-    if (fis != null) {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                baos.write(buffer, 0, bytesRead);
+
+        // Convertir la imagen a un array de bytes (si hay una nueva imagen seleccionada)
+        byte[] imagenBytes = null;
+        if (fis != null) {
+            try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    baos.write(buffer, 0, bytesRead);
+                }
+                imagenBytes = baos.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            imagenBytes = baos.toByteArray();
             usuario.setImagen(imagenBytes); // Asignar imagen a Usuario
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
-    }
 
-
+        // Actualizar el usuario en la base de datos
         if (controlUsuario.actualizarUsuario(usuario)) {
             JOptionPane.showMessageDialog(this, "Usuario actualizado exitosamente.");
             limpiarCampos(); // Limpiar los campos después de actualizar
+            if (imagenBytes != null) {
+                mostrarImagen(imagenBytes); // Mostrar la imagen actualizada en el JLabel
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el usuario.");
         }
@@ -932,7 +969,20 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private void buscarUsuarioPorID() {
         // llamamos al controlador usuario
         Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-        int idUsuario = Integer.parseInt(txt_id_usuario.getText().trim());
+        String idUsuarioStr = txt_id_usuario.getText().trim();
+
+        if (idUsuarioStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese la identificación del usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idUsuario;
+        try {
+            idUsuario = Integer.parseInt(idUsuarioStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La identificación del usuario debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         Usuario usuario = controlUsuario.obtenerUsuarioPorID(idUsuario);
         if (usuario != null) {
@@ -940,12 +990,17 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
             txt_email.setText(usuario.getEmail());
             txt_telefono.setText(usuario.getTelefono());
             txt_username.setText(usuario.getUsername());
-            txt_password.setText(usuario.getPassword()); // Nota: generalmente no se muestra la contraseña en un campo de texto
+            txt_password.setText(usuario.getPassword());
             Cmb_tipo_nivel.setSelectedItem(usuario.getTipo_nivel());
             Cmb_estatus.setSelectedItem(usuario.getEstatus());
             txt_registrado_por.setText(usuario.getRegistrado_por());
+            // Definir el formato de la fecha
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            // Mostrar la imagen en jLabel_foto
+// Convertir Date o Timestamp a String
+            txt_fecha_creacion.setText(sdf.format(usuario.getFecha_creacion()));
+            txt_ultima_sesion.setText(sdf.format(usuario.getUltima_sesion()));
+
             mostrarImagen(usuario.getImagen());
 
         } else {
@@ -967,7 +1022,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private void mostrarImagen(byte[] imagenBytes) {
         if (imagenBytes != null) {
             try {
-                // Convertir el array de bytes a un objeto Image
                 ByteArrayInputStream bais = new ByteArrayInputStream(imagenBytes);
                 Image imagen = ImageIO.read(bais);
 

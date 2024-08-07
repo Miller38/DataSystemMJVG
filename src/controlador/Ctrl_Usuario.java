@@ -78,7 +78,13 @@ public class Ctrl_Usuario {
             pst.setString(6, usuario.getTipo_nivel());
             pst.setString(7, usuario.getEstatus());
             pst.setString(8, usuario.getRegistrado_por());
-            pst.setBytes(9, usuario.getImagen());
+            
+             byte[] imagen = usuario.getImagen();
+            if (imagen != null) {
+                pst.setBytes(9, imagen);
+            } else {
+                pst.setNull(9, java.sql.Types.BLOB);
+            }
 
             if (pst.executeUpdate() > 0) {
                 respuesta = true;
@@ -110,11 +116,10 @@ public class Ctrl_Usuario {
             pst.setString(7, usuario.getEstatus());
             pst.setString(8, usuario.getRegistrado_por());
 
-            // Verificar si la imagen es null y asignar en consecuencia
-            if (usuario.getImagen() != null) {
-                pst.setBytes(9, usuario.getImagen());
+           byte[] imagen = usuario.getImagen();
+            if (imagen != null) {
+                pst.setBytes(9, imagen);
             } else {
-                // Si la imagen es null, puedes decidir no actualizarla o manejarlo de otra manera
                 pst.setNull(9, java.sql.Types.BLOB);
             }
 
@@ -177,6 +182,11 @@ public class Ctrl_Usuario {
                 usuario.setEstatus(rs.getString("estatus"));
                 usuario.setRegistrado_por(rs.getString("registrado_por"));
                 usuario.setImagen(rs.getBytes("imagen"));
+               
+                // Convertir las fechas del ResultSet a objetos Date y asignarlos
+            usuario.setFecha_creacion(rs.getDate("fecha_creacion"));
+            usuario.setUltima_sesion(rs.getDate("ultima_sesion"));
+                
             }
             cn.close();
         } catch (SQLException e) {
@@ -218,59 +228,6 @@ public class Ctrl_Usuario {
         generador.generarReporteUsuarios();
     }
 
-    /*
- * ------------------------------------------------------------------------------------------------------------------------
- *                          Método para obtener la imagen de un usuario desde la base de datos
- * ------------------------------------------------------------------------------------------------------------------------
-     */
-//public byte[] obtenerImagenUsuarioPorId(int id_usuario) {
-//    byte[] imagenBytes = null;
-//    Connection con = null;
-//    PreparedStatement pst = null;
-//    ResultSet rs = null;
-//
-//    try {
-//        con = Conexion.conectar(); // Tu método para obtener la conexión a la base de datos
-//        String sql = "SELECT imagen FROM tb_usuarios WHERE id_usuario = ?";
-//        pst = con.prepareStatement(sql);
-//        pst.setInt(1, id_usuario); // Usar el id_usuario pasado como argumento
-//
-//        System.out.println("Ejecutando consulta SQL para el ID de usuario: " + id_usuario); // Mensaje de depuración
-//        rs = pst.executeQuery();
-//
-//        if (rs.next()) {
-//            imagenBytes = rs.getBytes("imagen");
-//
-//            // Mensaje de depuración
-//            if (imagenBytes != null) {
-//                System.out.println("Imagen obtenida correctamente para el usuario con ID: " + id_usuario);
-//            } else {
-//                System.out.println("No se encontró imagen para el usuario con ID: " + id_usuario);
-//            }
-//        } else {
-//            // Mensaje de depuración
-//            System.out.println("No se encontró ningún registro para el usuario con ID: " + id_usuario);
-//        }
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//
-//        // Mensaje de depuración
-//        System.out.println("Error al ejecutar la consulta SQL: " + e.getMessage());
-//    } finally {
-//        try {
-//            if (rs != null) rs.close();
-//            if (pst != null) pst.close();
-//            if (con != null) con.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//            // Mensaje de depuración
-//            System.out.println("Error al cerrar los recursos de la base de datos: " + e.getMessage());
-//        }
-//    }
-//
-//    return imagenBytes;
-//}
     /*
  * ------------------------------------------------------------------------------------------------------------------------
  *                                               Método para actualizar la última sesión

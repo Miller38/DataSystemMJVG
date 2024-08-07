@@ -1,7 +1,8 @@
 
 package modelo;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 /**
  *
@@ -10,32 +11,36 @@ import java.time.LocalDate;
 public class Odontologo {
     
     private int id;
-    private String nombreOdontologo;
+    private String nombre_odontologo;
     private String apellido;
     private String direccion;
     private String ciudad;
     private String pais;
     private String especialidad;
     private String telefono;
-    private String correoElectronico;
-    private LocalDate fechaNacimiento;
+    private String email;
+    private Date fecha_nacimiento;
     private String genero;
+    private String numero_licencia;
+    private Date fecha_registro;
 
     public Odontologo() {
     }
 
-    public Odontologo(int id, String nombreOdontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String correoElectronico, LocalDate fechaNacimiento, String genero) {
+    public Odontologo(int id, String nombre_odontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String email, Date fecha_nacimiento, String genero, String numero_licencia, Date fecha_registro) {
         this.id = id;
-        this.nombreOdontologo = nombreOdontologo;
+        this.nombre_odontologo = nombre_odontologo;
         this.apellido = apellido;
         this.direccion = direccion;
         this.ciudad = ciudad;
         this.pais = pais;
         this.especialidad = especialidad;
         this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
-        this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
+        this.fecha_nacimiento = fecha_nacimiento;
         this.genero = genero;
+        this.numero_licencia = numero_licencia;
+        this.fecha_registro = fecha_registro;
     }
 
     public int getId() {
@@ -46,12 +51,12 @@ public class Odontologo {
         this.id = id;
     }
 
-    public String getNombreOdontologo() {
-        return nombreOdontologo;
+    public String getNombre_odontologo() {
+        return nombre_odontologo;
     }
 
-    public void setNombreOdontologo(String nombreOdontologo) {
-        this.nombreOdontologo = nombreOdontologo;
+    public void setNombre_odontologo(String nombre_odontologo) {
+        this.nombre_odontologo = nombre_odontologo;
     }
 
     public String getApellido() {
@@ -102,20 +107,20 @@ public class Odontologo {
         this.telefono = telefono;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
     public String getGenero() {
@@ -125,7 +130,22 @@ public class Odontologo {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    
-    
-    
+
+    public String getNumero_licencia() {
+        return numero_licencia;
+    }
+
+    public void setNumero_licencia(String numero_licencia) {
+        this.numero_licencia = numero_licencia;
+    }
+
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
+        
 }

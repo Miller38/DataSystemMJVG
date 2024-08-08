@@ -256,7 +256,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_minimizarMouseExited
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setBackground(new Color(255,51,51));
         Btn_cerrar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrarMouseEntered
 

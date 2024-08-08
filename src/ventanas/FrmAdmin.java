@@ -131,7 +131,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,6 +228,11 @@ public class FrmAdmin extends javax.swing.JFrame {
                 Btn_odontologosMouseExited(evt);
             }
         });
+        Btn_odontologos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_odontologosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/perfil-del-usuario.png"))); // NOI18N
 
@@ -316,7 +321,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 214, 240, 180));
 
         Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
-        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
         Btn_cerrar.setText("x");
         Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -332,10 +337,10 @@ public class FrmAdmin extends javax.swing.JFrame {
                 Btn_cerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 50, 30));
+        jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 40, 30));
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_titulo.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_titulo.setText("Sistema de informacion MJVG");
         jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
@@ -417,7 +422,7 @@ public class FrmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_nuevoUsuarioMouseExited
 
     private void Btn_cerrar_sesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrar_sesionMouseEntered
-        Btn_cerrar_sesion.setBackground(new Color(0, 153, 204));
+        Btn_cerrar_sesion.setBackground(new Color(255,51,51));
         Btn_cerrar_sesion.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrar_sesionMouseEntered
 
@@ -431,7 +436,7 @@ public class FrmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setBackground(new Color(255,51,51));
         Btn_cerrar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrarMouseEntered
 
@@ -513,6 +518,11 @@ public class FrmAdmin extends javax.swing.JFrame {
        FrmFactura frmFactura = new FrmFactura();
        frmFactura.setVisible(true);
     }//GEN-LAST:event_Btn_facturacionActionPerformed
+
+    private void Btn_odontologosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_odontologosActionPerformed
+        FrmOdontologo frmOdontologo = new FrmOdontologo();
+        frmOdontologo.setVisible(true);
+    }//GEN-LAST:event_Btn_odontologosActionPerformed
 
     /**
      * @param args the command line arguments

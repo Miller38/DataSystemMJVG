@@ -40,7 +40,6 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         Btn_guardar.setVisible(true);
         Btn_actualizar.setVisible(false);
-       
 
         // Obtiene el nombre de usuario que ha iniciado sesión desde el formulario de login
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
@@ -112,7 +111,6 @@ public class FrmPacientes extends javax.swing.JFrame {
         txt_ciudad = new javax.swing.JTextField();
         txt_pais = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
-        txt_fechaNacimiento = new javax.swing.JTextField();
         Cmb_genero = new javax.swing.JComboBox<>();
         Btn_guardar = new javax.swing.JButton();
         txt_email = new javax.swing.JTextField();
@@ -147,6 +145,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         jTable_pacientes = new javax.swing.JTable();
         txt_ocupacion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txt_fecha_nacimiento = new com.toedter.calendar.JDateChooser();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,20 +233,6 @@ public class FrmPacientes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 200, -1));
-
-        txt_fechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_fechaNacimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_fechaNacimiento.setToolTipText("Formato yyyy-mm-dd");
-        txt_fechaNacimiento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txt_fechaNacimiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txt_fechaNacimientoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txt_fechaNacimientoMouseExited(evt);
-            }
-        });
-        getContentPane().add(txt_fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 180, -1));
 
         Cmb_genero.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Genero", "Masculino", "Femenino", "Otro" }));
@@ -528,6 +513,9 @@ public class FrmPacientes extends javax.swing.JFrame {
         jLabel8.setText("Ocupacion :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, -1, -1));
 
+        txt_fecha_nacimiento.setDateFormatString("yyyy-MM-dd");
+        getContentPane().add(txt_fecha_nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 160, -1));
+
         jLabel_Wallpaper.setBackground(new java.awt.Color(51, 51, 51));
         jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 590));
@@ -566,7 +554,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         consultaPaciente();
         Btn_guardar.setVisible(false);
         Btn_actualizar.setVisible(true);
-       
+
 
     }//GEN-LAST:event_Btn_consultarActionPerformed
 
@@ -680,16 +668,6 @@ public class FrmPacientes extends javax.swing.JFrame {
         txt_email.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_emailMouseExited
 
-    private void txt_fechaNacimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_fechaNacimientoMouseEntered
-        txt_fechaNacimiento.setBackground(Color.black);
-        txt_fechaNacimiento.setForeground(Color.white);
-    }//GEN-LAST:event_txt_fechaNacimientoMouseEntered
-
-    private void txt_fechaNacimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_fechaNacimientoMouseExited
-        txt_fechaNacimiento.setBackground(Color.white);
-        txt_fechaNacimiento.setForeground(Color.BLACK);
-    }//GEN-LAST:event_txt_fechaNacimientoMouseExited
-
     private void txt_ocupacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_ocupacionMouseEntered
         txt_ocupacion.setBackground(Color.black);
         txt_ocupacion.setForeground(Color.white);
@@ -781,7 +759,7 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(0, 153, 204));
+        Btn_cerrar.setBackground(new Color(255,51,51));
         Btn_cerrar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrarMouseEntered
 
@@ -862,7 +840,7 @@ public class FrmPacientes extends javax.swing.JFrame {
     private javax.swing.JTextField txt_ciudad;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_email;
-    private javax.swing.JTextField txt_fechaNacimiento;
+    private com.toedter.calendar.JDateChooser txt_fecha_nacimiento;
     private javax.swing.JTextField txt_identificacion;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_ocupacion;
@@ -896,7 +874,6 @@ public class FrmPacientes extends javax.swing.JFrame {
                 || txt_ciudad.getText().trim().isEmpty()
                 || txt_pais.getText().trim().isEmpty()
                 || txt_email.getText().trim().isEmpty()
-                || txt_fechaNacimiento.getText().trim().isEmpty()
                 || txt_identificacion.getText().trim().isEmpty()
                 || txt_ocupacion.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados.");
@@ -936,12 +913,10 @@ public class FrmPacientes extends javax.swing.JFrame {
         }
 
         // Validar fecha de nacimiento
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            formatter.setLenient(false);
-            formatter.parse(txt_fechaNacimiento.getText().trim());
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "Fecha de nacimiento no válida. Use el formato yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
+        if (fecha_nacimiento == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha de nacimiento válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -962,7 +937,8 @@ public class FrmPacientes extends javax.swing.JFrame {
         txt_pais.setText("");
         txt_telefono.setText("");
         txt_email.setText("");
-        txt_fechaNacimiento.setText("");
+        // Limpiar el JDateChooser
+        txt_fecha_nacimiento.setDate(null);
         txt_identificacion.setText("");
         txt_ocupacion.setText("");
         jLabel_foto.setText("");
@@ -996,13 +972,9 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         // Convertir la fecha de nacimiento desde el texto
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date fechaNacimiento = formatter.parse(txt_fechaNacimiento.getText().trim());
-            paciente.setFechaNacimiento(fechaNacimiento);
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(this, "Fecha de nacimiento no válida. Use el formato yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        // Obtener la fecha de nacimiento directamente desde el JDateChooser
+        Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
+        paciente.setFechaNacimiento(fecha_nacimiento);
 
         paciente.setGenero((String) Cmb_genero.getSelectedItem());
         paciente.setIdentificacion(txt_identificacion.getText().trim());
@@ -1064,14 +1036,11 @@ public class FrmPacientes extends javax.swing.JFrame {
         paciente.setTelefono(txt_telefono.getText().trim());
         paciente.setEmail(txt_email.getText().trim());
 
+        // Convertir la fecha de nacimiento desde el texto
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date fechaNacimiento = formatter.parse(txt_fechaNacimiento.getText().trim());
-            paciente.setFechaNacimiento(fechaNacimiento);
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(this, "Fecha de nacimiento no válida. Use el formato yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        // Obtener la fecha de nacimiento directamente desde el JDateChooser
+        Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
+        paciente.setFechaNacimiento(fecha_nacimiento);
 
         paciente.setGenero((String) Cmb_genero.getSelectedItem());
         paciente.setIdentificacion(txt_identificacion.getText().trim());
@@ -1150,7 +1119,8 @@ public class FrmPacientes extends javax.swing.JFrame {
             txt_email.setText(paciente.getEmail());
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            txt_fechaNacimiento.setText(formatter.format(paciente.getFechaNacimiento()));
+            Date fechaNacimiento = paciente.getFechaNacimiento();
+            txt_fecha_nacimiento.setDate(fechaNacimiento);
 
             Cmb_genero.setSelectedItem(paciente.getGenero());
             Cmb_tipo_identificacion.setSelectedItem(paciente.getTipo_identificacion());

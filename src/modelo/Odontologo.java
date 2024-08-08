@@ -19,6 +19,8 @@ public class Odontologo {
     private String especialidad;
     private String telefono;
     private String email;
+    private String identificacion;
+    private String tipo_identificacion;
     private Date fecha_nacimiento;
     private String genero;
     private String numero_licencia;
@@ -27,7 +29,7 @@ public class Odontologo {
     public Odontologo() {
     }
 
-    public Odontologo(int id, String nombre_odontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String email, Date fecha_nacimiento, String genero, String numero_licencia, Date fecha_registro) {
+    public Odontologo(int id, String nombre_odontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String email, String identificacion, String tipo_identificacion, Date fecha_nacimiento, String genero, String numero_licencia, Date fecha_registro) {
         this.id = id;
         this.nombre_odontologo = nombre_odontologo;
         this.apellido = apellido;
@@ -37,6 +39,8 @@ public class Odontologo {
         this.especialidad = especialidad;
         this.telefono = telefono;
         this.email = email;
+        this.identificacion = identificacion;
+        this.tipo_identificacion = tipo_identificacion;
         this.fecha_nacimiento = fecha_nacimiento;
         this.genero = genero;
         this.numero_licencia = numero_licencia;
@@ -115,6 +119,22 @@ public class Odontologo {
         this.email = email;
     }
 
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getTipo_identificacion() {
+        return tipo_identificacion;
+    }
+
+    public void setTipo_identificacion(String tipo_identificacion) {
+        this.tipo_identificacion = tipo_identificacion;
+    }
+
     public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
@@ -147,5 +167,5 @@ public class Odontologo {
         this.fecha_registro = fecha_registro;
     }
 
-        
+    
 }

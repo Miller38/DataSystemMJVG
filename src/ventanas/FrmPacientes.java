@@ -4,6 +4,7 @@ import conexion.Conexion;
 import controlador.Ctrl_Paciente;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.geom.RoundRectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,7 +40,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         initComponents();
 
         Btn_guardar.setVisible(true);
-        Btn_actualizar.setVisible(false);
+        Btn_actualizar.setVisible(true);
 
         // Obtiene el nombre de usuario que ha iniciado sesión desde el formulario de login
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
@@ -52,6 +53,10 @@ public class FrmPacientes extends javax.swing.JFrame {
         // cierra todos los procesos en segundo plano cuando se cierra lainterfaz
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        
+        // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+
 
         // Verifica si el tipo de nivel es "Administrador" para mostrar u ocultar el botón de nuevo usuario
         if ("Administrador".equals(tipoNivel)) {
@@ -406,7 +411,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 180, -1));
 
-        jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 20));
 
@@ -719,7 +724,7 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_actualizarMouseExited
 
     private void Btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseEntered
-        Btn_eliminar.setBackground(new Color(0, 153, 204));
+        Btn_eliminar.setBackground(new Color(255,51,51));
         Btn_eliminar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_eliminarMouseEntered
 
@@ -1069,7 +1074,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         paciente.setImagen(imagenBytes); // Asignar imagen a Paciente
 
         if (controlPaciente.actualizarPaciente(paciente)) {
-            JOptionPane.showMessageDialog(this, "Paciente actualizado exitosamente.");
+            JOptionPane.showMessageDialog(this, "Actualizado exitosamente.");
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el paciente.");
@@ -1104,8 +1109,8 @@ public class FrmPacientes extends javax.swing.JFrame {
         String identificacion = txt_identificacion.getText().trim();
 
         if (identificacion.isEmpty()) {
-//////            JOptionPane.showMessageDialog(this, "Ingrese la identificación del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
-//////            return;
+            JOptionPane.showMessageDialog(this, "Ingrese la identificación del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
+           return;
         }
 
         Paciente paciente = controlPaciente.obtenerPaciente(identificacion);

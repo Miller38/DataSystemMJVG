@@ -13,7 +13,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmNuevoUsuario.java</file>
+            <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmEditarCita.java</file>
+            <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmBuscarCita.java</file>
             <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmOdontologo.java</file>
+            <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmEliminarCita.java</file>
+            <file>file:/C:/Users/miller/Documents/NetBeansProjectsel/DataSystemMJVG/src/ventanas/FrmAgregarCita.java</file>
         </group>
     </open-files>
 </project-private>

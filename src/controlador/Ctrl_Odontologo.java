@@ -16,7 +16,8 @@ public class Ctrl_Odontologo {
     public boolean guardarOdontologo(Odontologo odontologo) {
         boolean respuesta = false;
         String sql = "INSERT INTO tb_odontologos (nombre_odontologo, apellido, direccion, ciudad, pais, especialidad,"
-                + "telefono, email, fecha_nacimiento, genero, numero_licencia, identificacion, tipo_identificacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "telefono, email, fecha_nacimiento, genero, numero_licencia, identificacion, imagen,"
+                + " tipo_identificacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection cn = Conexion.conectar();
@@ -36,7 +37,15 @@ public class Ctrl_Odontologo {
             pst.setString(10, odontologo.getGenero());
             pst.setString(11, odontologo.getNumero_licencia());
             pst.setString(12, odontologo.getIdentificacion());
-            pst.setString(13, odontologo.getTipo_identificacion());
+            
+            byte[] imagen = odontologo.getImagen();
+            if (imagen != null) {
+                pst.setBytes(13, imagen);
+            } else {
+                pst.setNull(13, java.sql.Types.BLOB);
+            }
+            
+            pst.setString(14, odontologo.getTipo_identificacion());
 
             if (pst.executeUpdate() > 0) {
                 respuesta = true;
@@ -53,6 +62,7 @@ public class Ctrl_Odontologo {
     //----------------------------------------------------------------------------------------------------------------------//    
     public boolean existeOdontologo(String identificacion) {
         String sql = "SELECT  COUNT(*) FROM tb_odontologos WHERE identificacion = ?";
+        
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -62,7 +72,7 @@ public class Ctrl_Odontologo {
 
             if (rs.next()) {
                 int count = rs.getInt(1);
-                return count > 0;     // Retorna true si el paciente ya está registrado
+                return count > 0;     // Retorna true si el odontologo ya está registrado
             }
             cn.close();
         } catch (SQLException e) {
@@ -79,7 +89,7 @@ public class Ctrl_Odontologo {
         boolean respuesta = false;
          // SQL para actualizar los datos del odontólogo en la base de datos
         String sql = "UPDATE tb_odontologos Set nombre_odontologo = ?, apellido = ?, direccion = ?, ciudad = ?, "
-                + "pais = ?, especialidad = ?, telefono = ?, email = ?, tipo_identificacion = ?, "
+                + "pais = ?, especialidad = ?, telefono = ?, email = ?, tipo_identificacion = ?, imagen = ?, "
                 + "fecha_nacimiento = ?, genero = ?, numero_licencia = ? WHERE identificacion = ?";
 
         try {
@@ -98,17 +108,24 @@ public class Ctrl_Odontologo {
             pst.setString(7, odontologo.getTelefono());
             pst.setString(8, odontologo.getEmail());
             pst.setString(9, odontologo.getTipo_identificacion());
-            pst.setDate(10, new java.sql.Date(odontologo.getFecha_nacimiento().getTime()));
-            pst.setString(11, odontologo.getGenero());
-            pst.setString(12, odontologo.getNumero_licencia());
-            pst.setString(13, odontologo.getIdentificacion());
+            
+            byte[] imagen = odontologo.getImagen();
+            if (imagen != null) {
+                pst.setBytes(10, imagen);
+            } else {
+                pst.setNull(10, java.sql.Types.BLOB);
+            }
+            
+            pst.setDate(11, new java.sql.Date(odontologo.getFecha_nacimiento().getTime()));
+            pst.setString(12, odontologo.getGenero());
+            pst.setString(13, odontologo.getNumero_licencia());
+            pst.setString(14, odontologo.getIdentificacion());
 
             // Ejecuta la actualización y verifica si se afectó alguna fila
             if(pst.executeUpdate() > 0){
                 respuesta = true; // Si se actualizó, cambia la respuesta a true
             }
-            cn.close(); // Cierra la conexión
-            
+            cn.close(); // Cierra la conexión            
         } catch (SQLException e) {
             // Captura y muestra cualquier excepción SQL
              System.out.println("Error al actualizar." + e);
@@ -140,6 +157,7 @@ public class Ctrl_Odontologo {
                  odontologo.setTelefono(rs.getString("telefono"));
                  odontologo.setEmail(rs.getString("email"));
                  odontologo.setTipo_identificacion(rs.getString("tipo_identificacion"));
+                 odontologo.setImagen(rs.getBytes("imagen"));
                  odontologo.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
                  odontologo.setGenero(rs.getString("genero"));
                  odontologo.setNumero_licencia(rs.getString("numero_licencia"));                 

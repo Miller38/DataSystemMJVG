@@ -18,7 +18,9 @@ public class Ctrl_Usuario {
         Usuario usuario = null;
         String sql = "SELECT id_usuario, tipo_nivel, estatus, password FROM tb_usuarios WHERE username = ?";
         try (
-                Connection cn = Conexion.conectar(); PreparedStatement pst = cn.prepareStatement(sql)) {
+                Connection cn = Conexion.conectar(); 
+                PreparedStatement pst = cn.prepareStatement(sql)) {
+            
             if (cn != null) {
                 System.out.println("Conexión exitosa a la base de datos.");
             } else {
@@ -28,8 +30,11 @@ public class Ctrl_Usuario {
 
             pst.setString(1, objeto.getUsername());
 
-            try (ResultSet rs = pst.executeQuery()) {
+            try (
+                    ResultSet rs = pst.executeQuery()) {
+                
                 if (rs.next()) {
+                    
                     int id_usuario = rs.getInt("id_usuario");
                     String tipo_nivel = rs.getString("tipo_nivel");
                     String estatus = rs.getString("estatus");
@@ -101,7 +106,8 @@ public class Ctrl_Usuario {
 //----------------------------------------------------------------------------------------------------------------------//
     public boolean actualizarUsuario(Usuario usuario) {
         boolean respuesta = false;
-        String sql = "UPDATE tb_usuarios SET nombre_usuario=?, email=?, telefono=?, username=?, password=?, tipo_nivel=?, estatus=?, registrado_por=?, imagen=? WHERE id_usuario=?";
+        String sql = "UPDATE tb_usuarios SET nombre_usuario=?, email=?, telefono=?, username=?, password=?,"
+                + " tipo_nivel=?, estatus=?, registrado_por=?, imagen=? WHERE id_usuario=?";
 
         try {
             Connection cn = Conexion.conectar();
@@ -134,7 +140,6 @@ public class Ctrl_Usuario {
         }
         return respuesta;
     }
-
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                     Método para eliminar un usuario de la base de datos
 //----------------------------------------------------------------------------------------------------------------------//
@@ -205,6 +210,7 @@ public class Ctrl_Usuario {
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(sql);
+            
             pst.setString(1, username);
             ResultSet rs = pst.executeQuery();
 
@@ -246,5 +252,31 @@ public class Ctrl_Usuario {
             // Manejo de excepciones
         }
     }
+    
+      /*
+ * ------------------------------------------------------------------------------------------------------------------------
+ *                                               Método para obtener laimagen del usuario
+ * ------------------------------------------------------------------------------------------------------------------------
+     */
+
+    public byte[] obtenerImagenUsuario(String username) {
+    byte[] imagen = null;
+     String sql = "SELECT imagen FROM tb_usuarios WHERE username = ?";
+
+    try {
+       Connection cn = Conexion.conectar();
+       PreparedStatement pst = cn.prepareStatement(sql);
+       
+       pst.setString(1, username);
+       ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            imagen = rs.getBytes("imagen");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } 
+    return imagen;
+}
 
 }

@@ -20,6 +20,7 @@ public class Odontologo {
     private String telefono;
     private String email;
     private String identificacion;
+    private byte[] imagen;
     private String tipo_identificacion;
     private Date fecha_nacimiento;
     private String genero;
@@ -29,7 +30,7 @@ public class Odontologo {
     public Odontologo() {
     }
 
-    public Odontologo(int id, String nombre_odontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String email, String identificacion, String tipo_identificacion, Date fecha_nacimiento, String genero, String numero_licencia, Date fecha_registro) {
+    public Odontologo(int id, String nombre_odontologo, String apellido, String direccion, String ciudad, String pais, String especialidad, String telefono, String email, String identificacion, byte[] imagen, String tipo_identificacion, Date fecha_nacimiento, String genero, String numero_licencia, Date fecha_registro) {
         this.id = id;
         this.nombre_odontologo = nombre_odontologo;
         this.apellido = apellido;
@@ -40,6 +41,7 @@ public class Odontologo {
         this.telefono = telefono;
         this.email = email;
         this.identificacion = identificacion;
+        this.imagen = imagen;
         this.tipo_identificacion = tipo_identificacion;
         this.fecha_nacimiento = fecha_nacimiento;
         this.genero = genero;
@@ -127,6 +129,14 @@ public class Odontologo {
         this.identificacion = identificacion;
     }
 
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
     public String getTipo_identificacion() {
         return tipo_identificacion;
     }
@@ -167,5 +177,5 @@ public class Odontologo {
         this.fecha_registro = fecha_registro;
     }
 
-    
+   
 }

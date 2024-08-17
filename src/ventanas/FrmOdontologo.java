@@ -4,14 +4,20 @@ import controlador.Ctrl_Odontologo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Odontologo;
@@ -22,6 +28,9 @@ import modelo.Odontologo;
  */
 public class FrmOdontologo extends javax.swing.JFrame {
 
+//----------------------------------------------------------------------------------------------------------------------//
+//                                                         Variables para definir los colores del modo dark
+//----------------------------------------------------------------------------------------------------------------------//
     // Colores para el tema claro
     private Color fondoClaro = new Color(234, 236, 238); // Blanco atenuado para evitar el deslumbramiento.
     private Color textoClaro = new Color(253, 254, 254); // Negro suave para un buen contraste sin ser demasiado fuerte.
@@ -36,8 +45,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
     private ImageIcon iconoSol = new ImageIcon(getClass().getResource("/images/sol.png"));
     private ImageIcon iconoLuna = new ImageIcon(getClass().getResource("/images/luna_1.png"));
 
-    // private FileInputStream fis;
-    //private int longitudBytes;
+    private FileInputStream fis;
+    private int longitudBytes;
+
     public FrmOdontologo() {
 
         setUndecorated(true);
@@ -133,7 +143,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(51, 51, 51));
         jButton5.setText("Ver odontologos");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -150,7 +162,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 130, -1));
 
+        Btn_actualizar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_actualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_actualizar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar-flecha.png"))); // NOI18N
         Btn_actualizar.setText("  Editar");
         Btn_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,7 +182,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
 
+        Btn_eliminar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_eliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_eliminar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
         Btn_eliminar.setText("  Eliminar");
         Btn_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,7 +202,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, -1));
 
+        Btn_guardar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_guardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_guardar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardar-el-archivo.png"))); // NOI18N
         Btn_guardar.setText("  Guardar");
         Btn_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,7 +222,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
 
+        Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_regresar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_regresar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
         Btn_regresar.setText("  Regresar");
         Btn_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +251,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(Cmb_tipo_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 140, -1));
 
+        Btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_buscar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_buscar.setText("Buscar");
         Btn_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -376,8 +398,15 @@ public class FrmOdontologo extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         jLabel_foto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_fotoMouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 130, 110));
 
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jToggleButton1.setForeground(new java.awt.Color(51, 51, 51));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -464,6 +493,8 @@ public class FrmOdontologo extends javax.swing.JFrame {
         jLabel_titulo.setText("Gestionar Odontologos");
         jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
+        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_minimizar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_minimizar.setText("-");
         Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -480,6 +511,8 @@ public class FrmOdontologo extends javax.swing.JFrame {
         });
         jPanel1.add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
 
+        Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_cerrar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_cerrar.setText("x");
         Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -664,7 +697,7 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
     private void Btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseEntered
         Btn_guardar.setBackground(new Color(102, 255, 102));
-       // Btn_guardar.setForeground(Color.white);
+        // Btn_guardar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_guardarMouseEntered
 
     private void Btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseExited
@@ -677,8 +710,8 @@ public class FrmOdontologo extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_actualizarActionPerformed
 
     private void Btn_actualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseEntered
-        Btn_actualizar.setBackground(new Color(255,255,102));
-       // Btn_actualizar.setForeground(Color.white);
+        Btn_actualizar.setBackground(new Color(255, 255, 102));
+        // Btn_actualizar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_actualizarMouseEntered
 
     private void Btn_actualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseExited
@@ -687,7 +720,7 @@ public class FrmOdontologo extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_actualizarMouseExited
 
     private void Btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminarActionPerformed
-        // TODO add your handling code here:
+       eliminarOdontologo();
     }//GEN-LAST:event_Btn_eliminarActionPerformed
 
     private void Btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseEntered
@@ -743,6 +776,42 @@ public class FrmOdontologo extends javax.swing.JFrame {
     private void Cmb_tipo_identificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cmb_tipo_identificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cmb_tipo_identificacionActionPerformed
+
+    private void jLabel_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_fotoMouseClicked
+        /// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
+        JFileChooser archivo = new JFileChooser();
+        // Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
+        archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
+        int estado = archivo.showOpenDialog(null);
+        // Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
+        if (estado == JFileChooser.APPROVE_OPTION) {
+            try {
+                // Obtiene el archivo seleccionado
+                File file = archivo.getSelectedFile();
+                // Crea un FileInputStream para leer el archivo seleccionado
+                fis = new FileInputStream(file);
+                // Almacena la longitud del archivo seleccionado en bytes
+                this.longitudBytes = (int) file.length();
+                // Lee la imagen del archivo seleccionado
+                Image icono = ImageIO.read(file);
+                // Escala la imagen a las dimensiones del jLabel_foto
+                Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
+                // Establece la imagen escalada como el ícono del jLabel_foto
+                jLabel_foto.setIcon(new ImageIcon(scaledIcono));
+                // Asigna la ruta del archivo a txt_ruta para referencia futura
+
+            } catch (FileNotFoundException e) {
+                // Maneja la excepción si el archivo no se encuentra
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jLabel_fotoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -838,16 +907,10 @@ public class FrmOdontologo extends javax.swing.JFrame {
         jLabel9.setForeground(textoOscuro);
         jLabel10.setForeground(textoOscuro);
         jLabel12.setForeground(textoOscuro);
-       
-        // jTextField1.setBackground(fondoOscuro); // Establece el color de fondo del campo de texto para el tema claro.
-        // jTextField1.setForeground(textoClaro); // Establece el color del texto del campo de texto para el tema claro.
         Btn_guardar.setBackground(botonOscuro); // Establece el color de fondo del botón adicional para el tema claro.
         Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema claro.
     }
 
-    /**
-     * Aplica el tema oscuro a los componentes de la interfaz.
-     */
     private void aplicarTemaOscuro() {
         jPanel1.setBackground(fondoOscuro); // Establece el color de fondo del panel para el tema oscuro.
         jToggleButton1.setBackground(botonClaro); // Establece el color de fondo del botón para el tema oscuro.
@@ -863,8 +926,6 @@ public class FrmOdontologo extends javax.swing.JFrame {
         jLabel9.setForeground(textoClaro);
         jLabel10.setForeground(textoClaro);
         jLabel12.setForeground(textoClaro);
-        // jTextField1.setBackground(fondoClaro); // Establece el color de fondo del campo de texto para el tema oscuro.
-        // jTextField1.setForeground(textoOscuro); // Establece el color del texto del campo de texto para el tema oscuro.
         Btn_guardar.setBackground(botonClaro); // Establece el color de fondo del botón adicional para el tema oscuro.
         Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema oscuro.
     }
@@ -935,10 +996,10 @@ public class FrmOdontologo extends javax.swing.JFrame {
         }
 
         // Validar imagen
-//        if (fis == null) {
-//            JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen.");
-//            return false;
-//        }
+        if (fis == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen.");
+            return false;
+        }
         return true;
     }
 
@@ -991,6 +1052,31 @@ public class FrmOdontologo extends javax.swing.JFrame {
         odontologo.setFecha_nacimiento(fecha_nacimiento);
 
         odontologo.setTipo_identificacion((String) Cmb_genero.getSelectedItem());
+
+        // Convertir la imagen a un array de bytes
+        byte[] imagenBytes = null;
+        if (fis != null) {
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    baos.write(buffer, 0, bytesRead);
+                }
+                imagenBytes = baos.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } finally {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        odontologo.setImagen(imagenBytes); // Asignar imagen a Usuario
         odontologo.setGenero((String) Cmb_genero.getSelectedItem());
         odontologo.setNumero_licencia(txt_numero_licencia.getText().trim());
 
@@ -1030,13 +1116,27 @@ public class FrmOdontologo extends javax.swing.JFrame {
         odontologo.setTipo_identificacion((String) Cmb_tipo_identificacion.getSelectedItem());
         odontologo.setIdentificacion(txt_identificacion.getText().trim());
 
-        // Convertir la fecha de nacimiento desde el texto
-        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        // Obtener la fecha de nacimiento directamente desde el JDateChooser
+        // Convertir la imagen a un array de bytes (si hay una nueva imagen seleccionada)
+        if (fis != null) {
+            try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    baos.write(buffer, 0, bytesRead);
+                }
+                odontologo.setImagen(baos.toByteArray());
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } else {
+            // No hacer nada, la imagen existente se mantendrá en la base de datos.
+            odontologo.setImagen(null);
+        }
+
         Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
         odontologo.setFecha_nacimiento(fecha_nacimiento);
-
-        // Asignar el género seleccionado en el ComboBox al atributo del objeto Odontologo
         odontologo.setGenero((String) Cmb_genero.getSelectedItem());
 
         odontologo.setNumero_licencia(txt_numero_licencia.getText().trim());
@@ -1052,6 +1152,27 @@ public class FrmOdontologo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al actualizar.");
         }
     }
+    
+ //----------------------------------------------------------------------------------------------------------------------//
+//                                                         Método para eliminar un odontologo
+//----------------------------------------------------------------------------------------------------------------------//
+private void eliminarOdontologo(){
+    // llamamos al controlador 
+    Ctrl_Odontologo controlOdontologo = new Ctrl_Odontologo();
+    String identificacion = txt_identificacion.getText().trim();
+    
+    if(identificacion.isEmpty()){
+         JOptionPane.showMessageDialog(this, "Ingrese la identificación.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+    }
+    
+    if(controlOdontologo.eliminarOdontologo(identificacion)){
+        JOptionPane.showMessageDialog(this, "Eliminado exitosamente.");
+            limpiarCampos();
+    } else {
+         JOptionPane.showMessageDialog(this, "Error al eliminar.");
+    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Método para consultar el odontologo
@@ -1083,6 +1204,17 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
             Cmb_genero.setSelectedItem(odontologo.getGenero());
             txt_numero_licencia.setText(odontologo.getNumero_licencia());
+            
+             // Mostrar la imagen si existe
+        byte[] imagenBytes = odontologo.getImagen();
+        if (imagenBytes != null) {
+            ImageIcon imageIcon = new ImageIcon(imagenBytes);
+            Image image = imageIcon.getImage().getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
+            jLabel_foto.setIcon(new ImageIcon(image));
+        } else {
+            jLabel_foto.setIcon(null); // O puedes establecer una imagen por defecto
+        }
+            
         } else {
             JOptionPane.showMessageDialog(this, "No encontrado.");
         }

@@ -1,6 +1,5 @@
 package ventanas;
 
-
 import com.mysql.cj.Constants;
 import controlador.Ctrl_Usuario;
 import java.awt.Color;
@@ -10,11 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.geom.RoundRectangle2D;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 
 public class FrmAdmin extends javax.swing.JFrame {
@@ -22,18 +17,34 @@ public class FrmAdmin extends javax.swing.JFrame {
     private Image background_imagen;
 
     public FrmAdmin() {
-        
-        setUndecorated(true);
-        
-        initComponents();
-        
-         // Redondear las esquinas del jframe 
-        setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 10,10));
-        
-        //cargarDatosUsuario(1);
 
+        setUndecorated(true);
+
+        initComponents();
+
+        // Instanciar el controlador de usuario
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        
+         //cargarDatosUsuario(1);
         // Obtiene el nombre de usuario que ha iniciado sesión desde el formulario de login
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
+
+// Obtener la imagen del usuario logueado
+        byte[] imagenUsuario = controlUsuario.obtenerImagenUsuario(nombreUsuario);
+
+// Mostrar la imagen en un JLabel
+        if (imagenUsuario != null) {
+            ImageIcon imageIcon = new ImageIcon(imagenUsuario);
+            Image image = imageIcon.getImage().getScaledInstance(jLabelImagen.getWidth(), jLabelImagen.getHeight(), Image.SCALE_SMOOTH);
+            jLabelImagen.setIcon(new ImageIcon(image));
+        } else {
+            jLabelImagen.setIcon(null); // O establecer una imagen por defecto
+        }
+
+        // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 10, 10));
+
+       
 
 // Establece el texto del JLabel para mostrar el nombre de usuario
         jLabel_usuario.setText("Hola  " + nombreUsuario + "  Bienvenido.");
@@ -41,8 +52,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 // Establece el texto del JLabel para mostrar el tipo de nivel del usuario
         jLabel_TipoNivel.setText("Tipo Nivel : " + tipoNivel);
-        
-        
+
 // Verifica si el tipo de nivel es "Administrador" para mostrar u ocultar el botón de nuevo usuario
         if ("Administrador".equals(tipoNivel)) {
             // Si el tipo de nivel es "Administrador", se muestra el botón de nuevo usuario
@@ -52,10 +62,10 @@ public class FrmAdmin extends javax.swing.JFrame {
             Btn_nuevoUsuario.setVisible(false);
         }
 
-      //  setBackground_Panel("src/images/bg-gradiente.jpg", jPanel1);
+        //  setBackground_Panel("src/images/bg-gradiente.jpg", jPanel1);
         this.setLocationRelativeTo(null);
         this.setSize(900, 512);
-       this.setDefaultCloseOperation(FrmAdmin.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(FrmAdmin.EXIT_ON_CLOSE);
 
         // Btn_nuevoUsuario.setVisible(false);
         jLabel_Wallpaper.setVisible(false);
@@ -118,7 +128,6 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_odontologos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Btn_nuevoUsuario = new javax.swing.JButton();
-        jLabel_foto = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         jLabel_usuarios = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
@@ -127,6 +136,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_minimizar = new javax.swing.JButton();
         jLabel_usuario = new javax.swing.JLabel();
         jLabel_TipoNivel = new javax.swing.JLabel();
+        jLabelImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -262,11 +272,10 @@ public class FrmAdmin extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Btn_odontologos, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(btn_pacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(jLabel_foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(70, 70, 70)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(81, 81, 81)
                         .addComponent(jLabel1))
                     .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_citas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,9 +292,7 @@ public class FrmAdmin extends javax.swing.JFrame {
                         .addGap(103, 103, 103)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGap(168, 168, 168)
                         .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -317,8 +324,8 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 40, -1));
 
         jLabel_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letra-x.png"))); // NOI18N
-        jPanel1.add(jLabel_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, 30));
-        jPanel1.add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 214, 240, 180));
+        jPanel1.add(jLabel_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, -1, 30));
+        jPanel1.add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 200, 180));
 
         Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_cerrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -340,9 +347,9 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 40, 30));
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_titulo.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_titulo.setForeground(new java.awt.Color(204, 204, 204));
         jLabel_titulo.setText("Sistema de informacion MJVG");
-        jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -364,12 +371,13 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, -1, 30));
 
         jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 450, 30));
+        jLabel_usuario.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel1.add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 450, 30));
 
         jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_TipoNivel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 260, 30));
+        jPanel1.add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 260, 30));
+        jPanel1.add(jLabelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 50, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -422,7 +430,7 @@ public class FrmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_nuevoUsuarioMouseExited
 
     private void Btn_cerrar_sesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrar_sesionMouseEntered
-        Btn_cerrar_sesion.setBackground(new Color(255,51,51));
+        Btn_cerrar_sesion.setBackground(new Color(255, 51, 51));
         Btn_cerrar_sesion.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrar_sesionMouseEntered
 
@@ -436,7 +444,7 @@ public class FrmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(255,51,51));
+        Btn_cerrar.setBackground(new Color(255, 51, 51));
         Btn_cerrar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrarMouseEntered
 
@@ -515,8 +523,8 @@ public class FrmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_minimizarActionPerformed
 
     private void Btn_facturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_facturacionActionPerformed
-       FrmFactura frmFactura = new FrmFactura();
-       frmFactura.setVisible(true);
+        FrmFactura frmFactura = new FrmFactura();
+        frmFactura.setVisible(true);
     }//GEN-LAST:event_Btn_facturacionActionPerformed
 
     private void Btn_odontologosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_odontologosActionPerformed
@@ -572,9 +580,9 @@ public class FrmAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btn_pacientes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabel_TipoNivel;
     private javax.swing.JLabel jLabel_Wallpaper;
-    private javax.swing.JLabel jLabel_foto;
     private javax.swing.JLabel jLabel_titulo;
     private javax.swing.JLabel jLabel_usuario;
     private javax.swing.JLabel jLabel_usuarios;
@@ -582,7 +590,6 @@ public class FrmAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
 
-    
     // Método para mostrar la imagen en jLabel_foto
 //    private void mostrarImagen(byte[] imagenBytes) {
 //        if (imagenBytes != null) {
@@ -604,7 +611,6 @@ public class FrmAdmin extends javax.swing.JFrame {
 //            jLabel_foto.setIcon(null); // Si no hay imagen, eliminar el ícono
 //        }
 //    }
-
     // Método para cargar datos de un usuario, incluida la imagen
 //    private void cargarDatosUsuario(int id_usuario) {
 //        System.out.println("Cargando datos para el usuario con ID: " + id_usuario); // Mensaje de depuración
@@ -613,5 +619,4 @@ public class FrmAdmin extends javax.swing.JFrame {
 //        byte[] imagenBytes = controlUsuario.obtenerImagenUsuarioPorId(id_usuario);
 //        mostrarImagen(imagenBytes);
 //    }
-
 }

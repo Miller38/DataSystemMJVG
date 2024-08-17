@@ -59,6 +59,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
         jLabel_usuario.setText("Usuario: " + nombreUsuario);
+        
+        
 
 //         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 //         jLabel_TipoNivel.setText("Tipo Nivel :" + tipoNivel);
@@ -330,13 +332,13 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(txt_registrado_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 140, -1));
 
-        txt_fecha_creacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_fecha_creacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_fecha_creacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_fecha_creacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_fecha_creacion.setEnabled(false);
         jPanel1.add(txt_fecha_creacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 140, -1));
 
-        txt_ultima_sesion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_ultima_sesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_ultima_sesion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_ultima_sesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_ultima_sesion.setEnabled(false);
@@ -483,6 +485,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 160, 140));
 
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -844,6 +847,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema oscuro.
        
     }
+    
 // ----------------------------------------------------------------------------------------------------------------------//
 //                                                         Métodos de validación 
 //----------------------------------------------------------------------------------------------------------------------//

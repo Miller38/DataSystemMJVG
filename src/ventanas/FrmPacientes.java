@@ -1,16 +1,16 @@
 package ventanas;
 
-import conexion.Conexion;
 import controlador.Ctrl_Paciente;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -22,6 +22,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 import modelo.Paciente;
 
 /**
@@ -29,6 +30,20 @@ import modelo.Paciente;
  * @author Miller
  */
 public class FrmPacientes extends javax.swing.JFrame {
+
+    // Colores para el tema claro
+    private Color fondoClaro = new Color(234, 236, 238); // Blanco atenuado para evitar el deslumbramiento.
+    private Color textoClaro = new Color(253, 254, 254); // Negro suave para un buen contraste sin ser demasiado fuerte.
+    private Color botonClaro = new Color(236, 240, 241); // Gris claro para botones que contraste bien con el fondo claro.
+
+    // Colores para el tema oscuro
+    private Color fondoOscuro = new Color(28, 40, 51);  // ok
+    private Color textoOscuro = new Color(23, 32, 42); // Blanco suave para una buena legibilidad en el fondo oscuro.
+    private Color botonOscuro = new Color(242, 244, 244); // Gris medio para botones que mantenga el contraste con el fondo oscuro.
+
+    // Iconos
+    private ImageIcon iconoSol = new ImageIcon(getClass().getResource("/images/sol.png"));
+    private ImageIcon iconoLuna = new ImageIcon(getClass().getResource("/images/luna_1.png"));
 
     private FileInputStream fis;
     private int longitudBytes;
@@ -38,6 +53,8 @@ public class FrmPacientes extends javax.swing.JFrame {
         setUndecorated(true);
 
         initComponents();
+
+        jToggleButton1.setIcon(iconoLuna); // Ícono inicial
 
         Btn_guardar.setVisible(true);
         Btn_actualizar.setVisible(true);
@@ -53,10 +70,9 @@ public class FrmPacientes extends javax.swing.JFrame {
         // cierra todos los procesos en segundo plano cuando se cierra lainterfaz
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        
+
         // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
-
 
         // Verifica si el tipo de nivel es "Administrador" para mostrar u ocultar el botón de nuevo usuario
         if ("Administrador".equals(tipoNivel)) {
@@ -110,15 +126,17 @@ public class FrmPacientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         txt_nombre = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
         txt_direccion = new javax.swing.JTextField();
         txt_ciudad = new javax.swing.JTextField();
         txt_pais = new javax.swing.JTextField();
-        txt_telefono = new javax.swing.JTextField();
         Cmb_genero = new javax.swing.JComboBox<>();
-        Btn_guardar = new javax.swing.JButton();
+        txt_telefono = new javax.swing.JTextField();
         txt_email = new javax.swing.JTextField();
+        Btn_guardar = new javax.swing.JButton();
         txt_identificacion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -129,21 +147,16 @@ public class FrmPacientes extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel_foto = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         Btn_regresar = new javax.swing.JButton();
         Btn_actualizar = new javax.swing.JButton();
         Btn_eliminar = new javax.swing.JButton();
         Btn_consultar = new javax.swing.JButton();
-        jLabel_usuario = new javax.swing.JLabel();
-        jLabel_titulo = new javax.swing.JLabel();
-        Btn_cerrar = new javax.swing.JButton();
-        Btn_minimizar = new javax.swing.JButton();
-        jLabel_cabecera = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         Cmb_tipo_identificacion = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
         Cmb_tipoSangre = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         Cmb_estadoCivil = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -151,10 +164,35 @@ public class FrmPacientes extends javax.swing.JFrame {
         txt_ocupacion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txt_fecha_nacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel_Wallpaper = new javax.swing.JLabel();
+        Btn_ver_pacientes = new javax.swing.JButton();
+        jLabel_titulo = new javax.swing.JLabel();
+        jLabel_usuario = new javax.swing.JLabel();
+        Btn_minimizar = new javax.swing.JButton();
+        Btn_cerrar = new javax.swing.JButton();
+        jLabel_cabecera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jToggleButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseExited(evt);
+            }
+        });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 40, 30));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -167,7 +205,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_nombreMouseExited(evt);
             }
         });
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, -1));
+        jPanel1.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 200, -1));
 
         txt_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -180,7 +218,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_apellidoMouseExited(evt);
             }
         });
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, -1));
+        jPanel1.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, -1));
 
         txt_direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_direccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -193,7 +231,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_direccionMouseExited(evt);
             }
         });
-        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 200, -1));
+        jPanel1.add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 200, -1));
 
         txt_ciudad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_ciudad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -206,7 +244,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_ciudadMouseExited(evt);
             }
         });
-        getContentPane().add(txt_ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 200, -1));
+        jPanel1.add(txt_ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 200, -1));
 
         txt_pais.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_pais.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -224,7 +262,11 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_paisActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, -1));
+        jPanel1.add(txt_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 200, -1));
+
+        Cmb_genero.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Cmb_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Genero", "Masculino", "Femenino", "Otro" }));
+        jPanel1.add(Cmb_genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 180, -1));
 
         txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -237,13 +279,24 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_telefonoMouseExited(evt);
             }
         });
-        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 200, -1));
+        jPanel1.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 200, -1));
 
-        Cmb_genero.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Cmb_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Genero", "Masculino", "Femenino", "Otro" }));
-        getContentPane().add(Cmb_genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 180, -1));
+        txt_email.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_email.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txt_emailMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txt_emailMouseExited(evt);
+            }
+        });
+        jPanel1.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 180, -1));
 
+        Btn_guardar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_guardar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Btn_guardar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardar-el-archivo.png"))); // NOI18N
         Btn_guardar.setText("  Guardar");
         Btn_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,20 +312,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 Btn_guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 110, -1));
-
-        txt_email.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_email.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txt_email.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txt_emailMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txt_emailMouseExited(evt);
-            }
-        });
-        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 180, -1));
+        jPanel1.add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 110, -1));
 
         txt_identificacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_identificacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -290,47 +330,43 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_identificacionActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 180, -1));
+        jPanel1.add(txt_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 180, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Nombre :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Apellido :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Direccion :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Ciudad :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Pais :");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Telefono :");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Identificacion :");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, -1, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Email :");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Fecha de Nacimiento :");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, 20));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setText("Genero :");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, 20));
 
         jLabel_foto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,9 +374,15 @@ public class FrmPacientes extends javax.swing.JFrame {
                 jLabel_fotoMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 160, 140));
+        jPanel1.add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 160, 140));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("Genero :");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+
+        Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_regresar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Btn_regresar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
         Btn_regresar.setText("  Regresar");
         Btn_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -356,9 +398,11 @@ public class FrmPacientes extends javax.swing.JFrame {
                 Btn_regresarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
+        jPanel1.add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
 
+        Btn_actualizar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_actualizar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Btn_actualizar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar-flecha.png"))); // NOI18N
         Btn_actualizar.setText("  Editar");
         Btn_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -374,9 +418,11 @@ public class FrmPacientes extends javax.swing.JFrame {
                 Btn_actualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, -1, -1));
+        jPanel1.add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
 
+        Btn_eliminar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_eliminar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Btn_eliminar.setForeground(new java.awt.Color(51, 51, 51));
         Btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
         Btn_eliminar.setText("  Eliminar");
         Btn_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -392,7 +438,7 @@ public class FrmPacientes extends javax.swing.JFrame {
                 Btn_eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, -1, -1));
+        jPanel1.add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, -1, -1));
 
         Btn_consultar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         Btn_consultar.setText("Buscar");
@@ -409,77 +455,31 @@ public class FrmPacientes extends javax.swing.JFrame {
                 Btn_consultarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 180, -1));
-
-        jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 20));
-
-        jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel_titulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_titulo.setText("Gestionar Pacientes");
-        getContentPane().add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 190, 20));
-
-        Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
-        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
-        Btn_cerrar.setText("x");
-        Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_cerrarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_cerrarMouseExited(evt);
-            }
-        });
-        Btn_cerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_cerrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
-
-        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
-        Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
-        Btn_minimizar.setText("-");
-        Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_minimizarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_minimizarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_minimizarMouseExited(evt);
-            }
-        });
-        getContentPane().add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
-        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 60));
+        jPanel1.add(Btn_consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 180, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Tipo de identificacion");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
 
         Cmb_tipo_identificacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_tipo_identificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Cedula de ciudadania", "Tarjeta de identidad", "Pasaporte" }));
-        getContentPane().add(Cmb_tipo_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 180, -1));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel13.setText("Tipo de sangre :");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
+        jPanel1.add(Cmb_tipo_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 180, -1));
 
         Cmb_tipoSangre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_tipoSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RH", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
-        getContentPane().add(Cmb_tipoSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 80, -1));
+        jPanel1.add(Cmb_tipoSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 80, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel13.setText("Tipo de sangre :");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Estado civil :");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
 
         Cmb_estadoCivil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_estadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Solter@", "Casad@", "Divorciad@ Viud@", "Otro" }));
-        getContentPane().add(Cmb_estadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 180, -1));
+        jPanel1.add(Cmb_estadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 180, -1));
 
         jTable_pacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -499,7 +499,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_pacientes);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 660, 100));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 660, 100));
 
         txt_ocupacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_ocupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -512,18 +512,80 @@ public class FrmPacientes extends javax.swing.JFrame {
                 txt_ocupacionMouseExited(evt);
             }
         });
-        getContentPane().add(txt_ocupacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 180, -1));
+        jPanel1.add(txt_ocupacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 180, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Ocupacion :");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, -1, -1));
 
         txt_fecha_nacimiento.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(txt_fecha_nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 160, -1));
+        jPanel1.add(txt_fecha_nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 160, -1));
 
-        jLabel_Wallpaper.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 590));
+        Btn_ver_pacientes.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_ver_pacientes.setForeground(new java.awt.Color(51, 51, 51));
+        Btn_ver_pacientes.setText("Ver pacientes");
+        Btn_ver_pacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_ver_pacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_ver_pacientesMouseExited(evt);
+            }
+        });
+        Btn_ver_pacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_pacientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_ver_pacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, -1, -1));
+
+        jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_titulo.setText("Gestionar Pacientes");
+        jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 190, 20));
+
+        jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 200, 20));
+
+        Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_minimizar.setText("-");
+        Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_minimizarMouseExited(evt);
+            }
+        });
+        jPanel1.add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
+
+        Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
+        Btn_cerrar.setText("x");
+        Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Btn_cerrarMouseExited(evt);
+            }
+        });
+        Btn_cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cerrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
+        jPanel1.add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -695,7 +757,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
     private void Btn_regresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseEntered
         Btn_regresar.setBackground(new Color(0, 153, 204));
-        Btn_regresar.setForeground(Color.white);
+        Btn_regresar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_regresarMouseEntered
 
     private void Btn_regresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseExited
@@ -704,8 +766,8 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_regresarMouseExited
 
     private void Btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseEntered
-        Btn_guardar.setBackground(new Color(0, 153, 204));
-        Btn_guardar.setForeground(Color.white);
+        Btn_guardar.setBackground(new Color(102,255,102));
+        Btn_guardar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_guardarMouseEntered
 
     private void Btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseExited
@@ -714,8 +776,8 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_guardarMouseExited
 
     private void Btn_actualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseEntered
-        Btn_actualizar.setBackground(new Color(0, 153, 204));
-        Btn_actualizar.setForeground(Color.white);
+        Btn_actualizar.setBackground(new Color(255,255,102));
+        Btn_actualizar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_actualizarMouseEntered
 
     private void Btn_actualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseExited
@@ -724,8 +786,8 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_actualizarMouseExited
 
     private void Btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseEntered
-        Btn_eliminar.setBackground(new Color(255,51,51));
-        Btn_eliminar.setForeground(Color.white);
+        Btn_eliminar.setBackground(new Color(255, 51, 51));
+        Btn_eliminar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_eliminarMouseEntered
 
     private void Btn_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseExited
@@ -735,7 +797,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
     private void Btn_consultarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_consultarMouseEntered
         Btn_consultar.setBackground(new Color(0, 153, 204));
-        Btn_consultar.setForeground(Color.white);
+        Btn_consultar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_consultarMouseEntered
 
     private void Btn_consultarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_consultarMouseExited
@@ -749,7 +811,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
     private void Btn_minimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseEntered
         Btn_minimizar.setBackground(new Color(0, 153, 204));
-        Btn_minimizar.setForeground(Color.white);
+        Btn_minimizar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_minimizarMouseEntered
 
     private void Btn_minimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_minimizarMouseExited
@@ -764,7 +826,7 @@ public class FrmPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
-        Btn_cerrar.setBackground(new Color(255,51,51));
+        Btn_cerrar.setBackground(new Color(255, 51, 51));
         Btn_cerrar.setForeground(Color.white);
     }//GEN-LAST:event_Btn_cerrarMouseEntered
 
@@ -772,6 +834,46 @@ public class FrmPacientes extends javax.swing.JFrame {
         Btn_cerrar.setBackground(Color.white);
         Btn_cerrar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_cerrarMouseExited
+
+    private void Btn_ver_pacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_pacientesActionPerformed
+       // Llama al método cargarPacientes() cuando se hace clic en el botón
+        cargarPacientes();
+    }//GEN-LAST:event_Btn_ver_pacientesActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+      // Verifica si el botón de alternancia está seleccionado
+        if (jToggleButton1.isSelected()) {
+              // Aplica el tema oscuro a la interfaz
+            aplicarTemaOscuro(); 
+            // Cambia el ícono del botón a un sol, indicando que ahora el usuario puede cambiar a un tema claro
+            jToggleButton1.setIcon(iconoSol);
+        } else {
+             // Aplica el tema claro a la interfaz
+            aplicarTemaClaro();   
+             // Cambia el ícono del botón a una luna, indicando que ahora el usuario puede cambiar a un tema oscuro
+            jToggleButton1.setIcon(iconoLuna); 
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void Btn_ver_pacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_pacientesMouseEntered
+        Btn_ver_pacientes.setBackground(new Color(0, 153, 204));
+        Btn_ver_pacientes.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_ver_pacientesMouseEntered
+
+    private void Btn_ver_pacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_pacientesMouseExited
+       Btn_ver_pacientes.setBackground(Color.white);
+        Btn_ver_pacientes.setForeground(Color.BLACK);
+    }//GEN-LAST:event_Btn_ver_pacientesMouseExited
+
+    private void jToggleButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseEntered
+        jToggleButton1.setBackground(new Color(0, 153, 204));
+        jToggleButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jToggleButton1MouseEntered
+
+    private void jToggleButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseExited
+         jToggleButton1.setBackground(Color.white);
+        jToggleButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jToggleButton1MouseExited
 
     /**
      * @param args the command line arguments
@@ -816,6 +918,7 @@ public class FrmPacientes extends javax.swing.JFrame {
     private javax.swing.JButton Btn_guardar;
     private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_regresar;
+    private javax.swing.JButton Btn_ver_pacientes;
     private javax.swing.JComboBox<String> Cmb_estadoCivil;
     private javax.swing.JComboBox<String> Cmb_genero;
     private javax.swing.JComboBox<String> Cmb_tipoSangre;
@@ -834,13 +937,14 @@ public class FrmPacientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_cabecera;
     private javax.swing.JLabel jLabel_foto;
     private javax.swing.JLabel jLabel_titulo;
     private javax.swing.JLabel jLabel_usuario;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable_pacientes;
+    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JScrollPane jScrollPane3;
+    public static javax.swing.JTable jTable_pacientes;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_ciudad;
     private javax.swing.JTextField txt_direccion;
@@ -853,7 +957,61 @@ public class FrmPacientes extends javax.swing.JFrame {
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 
-    //----------------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------------//
+//                                                         Métodos para cambiar de tema
+//----------------------------------------------------------------------------------------------------------------------//
+    private void aplicarTemaClaro() {
+        jPanel1.setBackground(fondoClaro);
+        jToggleButton1.setBackground(botonOscuro); // Establece el color de fondo del botón para el tema claro.
+        jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema claro.
+        jLabel1.setForeground(textoOscuro); // Establece el color del texto de la etiqueta para el tema claro.
+        jLabel2.setForeground(textoOscuro);
+        jLabel3.setForeground(textoOscuro);
+        jLabel4.setForeground(textoOscuro);
+        jLabel5.setForeground(textoOscuro);
+        jLabel6.setForeground(textoOscuro);
+        jLabel7.setForeground(textoOscuro);
+        jLabel8.setForeground(textoOscuro);
+        jLabel9.setForeground(textoOscuro);
+        jLabel10.setForeground(textoOscuro);
+        jLabel11.setForeground(textoOscuro);
+        jLabel12.setForeground(textoOscuro);
+        jLabel13.setForeground(textoOscuro);
+        jLabel14.setForeground(textoOscuro);
+
+        // jTextField1.setBackground(fondoOscuro); // Establece el color de fondo del campo de texto para el tema claro.
+        // jTextField1.setForeground(textoClaro); // Establece el color del texto del campo de texto para el tema claro.
+        Btn_guardar.setBackground(botonOscuro); // Establece el color de fondo del botón adicional para el tema claro.
+        Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema claro.
+
+    }
+
+    private void aplicarTemaOscuro() {
+        jPanel1.setBackground(fondoOscuro);
+        jToggleButton1.setBackground(botonClaro); // Establece el color de fondo del botón para el tema oscuro.
+        jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema oscuro.
+        jLabel1.setForeground(textoClaro); // Establece el color del texto de la etiqueta para el tema oscuro.
+        jLabel2.setForeground(textoClaro);
+        jLabel3.setForeground(textoClaro);
+        jLabel4.setForeground(textoClaro);
+        jLabel5.setForeground(textoClaro);
+        jLabel6.setForeground(textoClaro);
+        jLabel7.setForeground(textoClaro);
+        jLabel8.setForeground(textoClaro);
+        jLabel9.setForeground(textoClaro);
+        jLabel10.setForeground(textoClaro);
+        jLabel11.setForeground(textoClaro);
+        jLabel12.setForeground(textoClaro);
+        jLabel13.setForeground(textoClaro);
+        jLabel14.setForeground(textoClaro);
+        // jTextField1.setBackground(fondoClaro); // Establece el color de fondo del campo de texto para el tema oscuro.
+        // jTextField1.setForeground(textoOscuro); // Establece el color del texto del campo de texto para el tema oscuro.
+        Btn_guardar.setBackground(botonClaro); // Establece el color de fondo del botón adicional para el tema oscuro.
+        Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema oscuro.
+
+    }
+    
+ //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Métodos de validación 
 //----------------------------------------------------------------------------------------------------------------------//
 // Método para validar el teléfono
@@ -870,7 +1028,11 @@ public class FrmPacientes extends javax.swing.JFrame {
         return matcher.matches();
     }
 
-// Método para validar todos los campos
+
+//----------------------------------------------------------------------------------------------------------------------//
+//                                            Método para validar todos los campos
+//----------------------------------------------------------------------------------------------------------------------//    
+
     private boolean validarCampos() {
         if (txt_nombre.getText().trim().isEmpty()
                 || txt_apellido.getText().trim().isEmpty()
@@ -918,7 +1080,7 @@ public class FrmPacientes extends javax.swing.JFrame {
         }
 
         // Validar fecha de nacimiento
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
         if (fecha_nacimiento == null) {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha de nacimiento válida.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -933,7 +1095,10 @@ public class FrmPacientes extends javax.swing.JFrame {
         return true;
     }
 
-// Método para limpiar campos
+ //----------------------------------------------------------------------------------------------------------------------//
+//                                                    Método para limpiar campos
+//----------------------------------------------------------------------------------------------------------------------//    
+
     private void limpiarCampos() {
         txt_nombre.setText("");
         txt_apellido.setText("");
@@ -976,10 +1141,10 @@ public class FrmPacientes extends javax.swing.JFrame {
         paciente.setEmail(txt_email.getText().trim());
 
         // Convertir la fecha de nacimiento desde el texto
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         // Obtener la fecha de nacimiento directamente desde el JDateChooser
         Date fecha_nacimiento = txt_fecha_nacimiento.getDate();
-        paciente.setFechaNacimiento(fecha_nacimiento);
+        //paciente.setFechaNacimiento(fecha_nacimiento);
 
         paciente.setGenero((String) Cmb_genero.getSelectedItem());
         paciente.setIdentificacion(txt_identificacion.getText().trim());
@@ -1094,10 +1259,10 @@ public class FrmPacientes extends javax.swing.JFrame {
         }
 
         if (controlPaciente.eliminarPaciente(identificacion)) {
-            JOptionPane.showMessageDialog(this, "Paciente eliminado exitosamente.");
+            JOptionPane.showMessageDialog(this, "Eliminado exitosamente.");
             limpiarCampos();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el paciente.");
+            JOptionPane.showMessageDialog(this, "Error al eliminar.");
         }
     }
 
@@ -1110,7 +1275,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         if (identificacion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese la identificación del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
+            return;
         }
 
         Paciente paciente = controlPaciente.obtenerPaciente(identificacion);
@@ -1151,4 +1316,87 @@ public class FrmPacientes extends javax.swing.JFrame {
     //---------------------------------------------------------------------------------------------------------------------//
     //                                      Metodo para obtener todos los pacientes en la tabla
     //---------------------------------------------------------------------------------------------------------------------//
+    private void cargarPacientes() {
+        // Crear una instancia de Ctrl_Paciente para manejar la lógica relacionada con los pacientes
+        Ctrl_Paciente controlPaciente = new Ctrl_Paciente();
+        // Cargar el modelo de la tabla con los datos de los pacientes
+        DefaultTableModel model = controlPaciente.cargarTablaPacientes();
+        // Establecer el modelo de la tabla de pacientes en la interfaz gráfica
+        jTable_pacientes.setModel(model);
+        // Asociar la tabla de pacientes con un JScrollPane para permitir el desplazamiento
+        jScrollPane3.setViewportView(jTable_pacientes);
+
+        // Agrega un listener de eventos de ratón a la tabla de pacientes
+        jTable_pacientes.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Obtener la fila seleccionada al hacer clic
+                int filaPoint = jTable_pacientes.rowAtPoint(e.getPoint());
+                // La columna 0 corresponde al ID del paciente
+                int columnaPoint = 0;
+
+                 // Verifica que se haya hecho clic en una fila válida
+                if (filaPoint > -1) {
+                    // Obtener el ID del paciente de la fila seleccionada
+                    int id = (int) jTable_pacientes.getValueAt(filaPoint, columnaPoint);
+                     // Llamar al método para enviar los datos del paciente seleccionado a los campos correspondientes
+                    enviarDatosPacienteSeleccionado(id);
+                }
+            }
+        });
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                  Metodo para enviar los datos delpaciente seleccionado en la tabla a los campos
+    //---------------------------------------------------------------------------------------------------------------------//
+
+    private void enviarDatosPacienteSeleccionado(int id) {
+        // Crear una instancia de Ctrl_Paciente para manejar la lógica relacionada con los pacientes
+        Ctrl_Paciente controlPaciente = new Ctrl_Paciente();
+         // Obtener el objeto Paciente correspondiente al ID proporcionado
+        Paciente paciente = controlPaciente.obtenerPacientePorId(id); // Asignar el paciente obtenido
+
+        // Verifica si se ha encontrado un paciente con el ID dado
+        if (paciente != null) {
+             // Establecer los datos del paciente en los campos de texto correspondientes en la interfaz gráfica
+            txt_nombre.setText(paciente.getNombre());
+            txt_apellido.setText(paciente.getApellido());
+            txt_direccion.setText(paciente.getDireccion());
+            txt_ciudad.setText(paciente.getCiudad());
+            txt_pais.setText(paciente.getPais());
+            txt_telefono.setText(paciente.getTelefono());
+            txt_email.setText(paciente.getEmail());
+            txt_fecha_nacimiento.setDate(paciente.getFechaNacimiento());
+            txt_identificacion.setText(paciente.getIdentificacion());
+            txt_ocupacion.setText(paciente.getOcupacion());
+             // Establecer las opciones seleccionadas en los comboboxes según los datos del paciente
+            Cmb_genero.setSelectedItem(paciente.getGenero());
+            Cmb_tipo_identificacion.setSelectedItem(paciente.getTipo_identificacion());
+            Cmb_tipoSangre.setSelectedItem(paciente.getTipo_sangre());
+            Cmb_estadoCivil.setSelectedItem(paciente.getEstado_civil());
+
+            // Mostrar la imagen del paciente en un JLabel
+            if (paciente.getImagen() != null) {
+                mostrarImagen(paciente.getImagen());
+            } else {
+                // Si no hay imagen, se puede establecer una imagen por defecto o dejar el JLabel vacío
+                jLabel_foto.setIcon(null); // O se puede establecer una imagen por defecto
+            }
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                        Método para convertir el array de bytes a imagen y mostrarlo en un JLabel
+    //---------------------------------------------------------------------------------------------------------------------//
+    private void mostrarImagen(byte[] imagenEnBytes) {
+        // Convertir los bytes a una imagen usando ImageIcon
+        ImageIcon imagenIcon = new ImageIcon(imagenEnBytes);
+
+        // Escalar la imagen si es necesario
+        Image imagenEscalada = imagenIcon.getImage().getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
+
+        // Establecer la imagen en el JLabel
+        jLabel_foto.setIcon(new ImageIcon(imagenEscalada));
+    }
+
 }

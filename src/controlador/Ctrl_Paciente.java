@@ -4,6 +4,9 @@ import java.sql.*;
 import conexion.Conexion;
 import modelo.Paciente;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import ventanas.FrmPacientes;
 
 /**
  *
@@ -192,6 +195,7 @@ public class Ctrl_Paciente {
     //                                            Método para verificar si el paciente ya existe bd
     //----------------------------------------------------------------------------------------------------------------------//    
     public boolean existePaciente(String identificacion) {
+
         String sql = "SELECT  COUNT(*) FROM tb_pacientes WHERE identificacion = ?";
         try {
             Connection cn = Conexion.conectar();
@@ -214,4 +218,102 @@ public class Ctrl_Paciente {
     //---------------------------------------------------------------------------------------------------------------------//
     //                                      Metodo para obtener todos los pacientes en la tabla
     //---------------------------------------------------------------------------------------------------------------------//
+    public DefaultTableModel cargarTablaPacientes() {
+        Connection cn = Conexion.conectar();
+        DefaultTableModel model = new DefaultTableModel();
+
+        String sql = "SELECT id, nombre, apellido, direccion, ciudad, telefono, email,"
+                + " identificacion FROM tb_pacientes";
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+//            FrmPacientes.jTable_pacientes = new JTable(model);
+//            FrmPacientes.jScrollPane3.setViewportView(FrmPacientes.jTable_pacientes);
+//            
+            model.addColumn("id");
+            model.addColumn("nombre");
+            model.addColumn("apellido");
+            model.addColumn("direccion");
+            model.addColumn("ciudad");
+            model.addColumn("telefono");
+            model.addColumn("email");
+            model.addColumn("identificacion");
+
+            while (rs.next()) {
+                Object fila[] = new Object[8];
+                fila[0] = rs.getInt("id");
+                fila[1] = rs.getString("nombre");
+                fila[2] = rs.getString("apellido");
+                fila[3] = rs.getString("direccion");
+                fila[4] = rs.getString("ciudad");
+                fila[5] = rs.getString("telefono");
+                fila[6] = rs.getString("email");
+                fila[7] = rs.getString("identificacion");
+
+                model.addRow(fila);
+            }
+            cn.close();
+        } catch (SQLException e) {
+            System.out.println("Error al llenar la tabla usuarios " + e.getMessage());
+        }
+        return model;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                                      Método para obtener los datos de un paciente por ID
+    //---------------------------------------------------------------------------------------------------------------------//
+    // Método para obtener los datos de un paciente por ID
+    public Paciente obtenerPacientePorId(int id) {
+        Paciente paciente = null;
+
+        try {
+            Connection con = Conexion.conectar();
+            String sql = "SELECT id, nombre, apellido, direccion, ciudad, pais, telefono, email, fechaNacimiento, "
+                    + "genero,  identificacion, tipo_identificacion,tipo_sangre,estado_civil, ocupacion ,"
+                    + "imagen FROM tb_pacientes WHERE id = ?";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                paciente = new Paciente();
+
+                paciente.setId(rs.getInt(1));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setDireccion(rs.getString("direccion"));
+                paciente.setCiudad(rs.getString("ciudad"));
+                paciente.setPais(rs.getString("pais"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setEmail(rs.getString("email"));
+
+                // Asignar la fecha de nacimiento, asegúrate de convertir correctamente si es necesario
+            paciente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                
+
+                paciente.setGenero(rs.getString("genero"));
+                paciente.setIdentificacion(rs.getString("identificacion"));
+                paciente.setTipo_identificacion(rs.getString("tipo_identificacion"));
+                paciente.setTipo_sangre(rs.getString("tipo_sangre"));
+                paciente.setEstado_civil(rs.getString("estado_civil"));
+                paciente.setOcupacion(rs.getString("ocupacion"));
+                
+                 // Obtener la imagen como un array de bytes y asignarla al objeto Paciente
+            byte[] imagenBytes = rs.getBytes("imagen");
+            if (imagenBytes != null) {
+                paciente.setImagen(imagenBytes);
+            }
+           
+
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al obtener datos del paciente: " + e.getMessage());
+        }
+
+        return paciente;
+    }
+
 }

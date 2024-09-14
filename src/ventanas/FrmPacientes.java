@@ -62,10 +62,11 @@ public class FrmPacientes extends javax.swing.JFrame {
         // Obtiene el nombre de usuario que ha iniciado sesión desde el formulario de login
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
         jLabel_usuario.setText("Usuario: " + nombreUsuario);
-
+         // Obtiene tipo de nivel del usuario que ha iniciado sesión desde el formulario de login
         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 
         this.setTitle("Formulario de Paciente");
+        // se asigna las medidas del jframe
         this.setSize(752, 586);
         // cierra todos los procesos en segundo plano cuando se cierra lainterfaz
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -174,7 +175,6 @@ public class FrmPacientes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));

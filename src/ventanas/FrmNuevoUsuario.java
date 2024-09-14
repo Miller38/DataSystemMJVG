@@ -11,6 +11,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,27 +74,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
 
-        /*
-    * ------------------------------------------------------------------------------------------------------------------------
-    *                                                            Colocar imagen de fondo
-    * ------------------------------------------------------------------------------------------------------------------------
-         */
-//        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
-//        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
-//        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
-//        // Obtiene la imagen del ImageIcon
-//        Icon icono = new ImageIcon(
-//                wallpaper.getImage().getScaledInstance( // Escala la imagen
-//                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
-//                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
-//                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
-//                )
-//        );
-//        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
-//        jLabel_Wallpaper.setIcon(icono);
-//        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
-//        this.repaint();
-        // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
+   // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/images/fondo3.jpg");
 // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
@@ -533,7 +516,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_regresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseEntered
         Btn_regresar.setBackground(new Color(0, 153, 204));
-        Btn_regresar.setForeground(Color.white);
+        Btn_regresar.setForeground(Color.black);
     }//GEN-LAST:event_Btn_regresarMouseEntered
 
     private void Btn_regresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_regresarMouseExited
@@ -543,7 +526,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseEntered
         Btn_guardar.setBackground(new Color(102, 255, 102));
-        Btn_guardar.setForeground(Color.white);
+        Btn_guardar.setForeground(Color.black);
     }//GEN-LAST:event_Btn_guardarMouseEntered
 
     private void Btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseExited
@@ -553,7 +536,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_actualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseEntered
         Btn_actualizar.setBackground(new Color(255,255,102));
-        Btn_actualizar.setForeground(Color.white);
+        Btn_actualizar.setForeground(Color.black);
     }//GEN-LAST:event_Btn_actualizarMouseEntered
 
     private void Btn_actualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_actualizarMouseExited
@@ -563,7 +546,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseEntered
         Btn_eliminar.setBackground(new Color(255,51,51));
-        Btn_eliminar.setForeground(Color.white);
+        Btn_eliminar.setForeground(Color.black);
     }//GEN-LAST:event_Btn_eliminarMouseEntered
 
     private void Btn_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_eliminarMouseExited
@@ -573,7 +556,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_ver_usuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosMouseEntered
         Btn_ver_usuarios.setBackground(new Color(0, 153, 204));
-        Btn_ver_usuarios.setForeground(Color.white);
+        Btn_ver_usuarios.setForeground(Color.black);
     }//GEN-LAST:event_Btn_ver_usuariosMouseEntered
 
     private void Btn_ver_usuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosMouseExited
@@ -1071,47 +1054,59 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                         Método para buscar un usuario por ID
 //----------------------------------------------------------------------------------------------------------------------//
-    private void buscarUsuarioPorID() {
-        // llamamos al controlador usuario
-        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-        String idUsuarioStr = txt_id_usuario.getText().trim();
+        private void buscarUsuarioPorID() {
+            // llamamos al controlador usuario
+            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+            String idUsuarioStr = txt_id_usuario.getText().trim();
 
-        if (idUsuarioStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese la identificación del usuario.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            if (idUsuarioStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese la identificación del usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        int idUsuario;
-        try {
-            idUsuario = Integer.parseInt(idUsuarioStr);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La identificación del usuario debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            int idUsuario;
+            try {
+                idUsuario = Integer.parseInt(idUsuarioStr);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La identificación del usuario debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        Usuario usuario = controlUsuario.obtenerUsuarioPorID(idUsuario);
-        if (usuario != null) {
-            txt_nombre.setText(usuario.getNombre_usuario());
-            txt_email.setText(usuario.getEmail());
-            txt_telefono.setText(usuario.getTelefono());
-            txt_username.setText(usuario.getUsername());
-            txt_password.setText(usuario.getPassword());
-            Cmb_tipo_nivel.setSelectedItem(usuario.getTipo_nivel());
-            Cmb_estatus.setSelectedItem(usuario.getEstatus());
-            txt_registrado_por.setText(usuario.getRegistrado_por());
-            // Definir el formato de la fecha
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Usuario usuario = controlUsuario.obtenerUsuarioPorID(idUsuario);
+            if (usuario != null) {
+                txt_nombre.setText(usuario.getNombre_usuario());
+                txt_email.setText(usuario.getEmail());
+                txt_telefono.setText(usuario.getTelefono());
+                txt_username.setText(usuario.getUsername());
+                txt_password.setText(usuario.getPassword());
+                Cmb_tipo_nivel.setSelectedItem(usuario.getTipo_nivel());
+                Cmb_estatus.setSelectedItem(usuario.getEstatus());
+                txt_registrado_por.setText(usuario.getRegistrado_por());
+        
+                 // Definir el formato de la fecha
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-// Convertir Date o Timestamp a String
+        // Convertir Date o Timestamp a String, verificando si las fechas son nulas
+        if (usuario.getFecha_creacion() != null) {
             txt_fecha_creacion.setText(sdf.format(usuario.getFecha_creacion()));
-            txt_ultima_sesion.setText(sdf.format(usuario.getUltima_sesion()));
-
-            mostrarImagen(usuario.getImagen());
-
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario no encontrado.");
+            txt_fecha_creacion.setText(""); // Dejar vacío si la fecha es nula
         }
-    }
+
+        if (usuario.getUltima_sesion() != null) {
+            txt_ultima_sesion.setText(sdf.format(usuario.getUltima_sesion()));
+        } else {
+            txt_ultima_sesion.setText(""); // Dejar vacío si la fecha es nula
+        }
+    
+
+
+                mostrarImagen(usuario.getImagen());
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado.");
+            }
+        }
 
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                    Método para comparar si el usuario existe

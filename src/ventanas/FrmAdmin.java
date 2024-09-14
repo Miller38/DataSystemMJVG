@@ -8,8 +8,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 
 public class FrmAdmin extends javax.swing.JFrame {
@@ -47,11 +52,11 @@ public class FrmAdmin extends javax.swing.JFrame {
        
 
 // Establece el texto del JLabel para mostrar el nombre de usuario
-        jLabel_usuario.setText("Hola  " + nombreUsuario + "  Bienvenido.");
+        jLabel_usuario.setText("Hola  " + nombreUsuario + "  Bienvenid@.");
 // Obtiene el tipo de nivel del usuario desde el formulario de login
         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 // Establece el texto del JLabel para mostrar el tipo de nivel del usuario
-        jLabel_TipoNivel.setText("Tipo Nivel : " + tipoNivel);
+        jLabel_TipoNivel.setText(tipoNivel);
 
 // Verifica si el tipo de nivel es "Administrador" para mostrar u ocultar el botón de nuevo usuario
         if ("Administrador".equals(tipoNivel)) {
@@ -90,8 +95,42 @@ public class FrmAdmin extends javax.swing.JFrame {
         jLabel_Wallpaper.setIcon(icono);
         // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
+        
+        // Inicia el temporizador.
+        timer.start();
 
     }
+    
+     //------------------------------------ metodo para mostrar la hora y la fecha ------------------------------------------//
+
+    //Crea una instancia de Timer que se ejecuta cada 1000 milisegundos (1 segundo).
+    Timer timer = new Timer(1000, new ActionListener() {
+        // Define la acción que se ejecutará cada vez que el temporizador se active.
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtiene la fecha y hora actual del sistema.
+            Calendar cal = new GregorianCalendar();
+            // Declara variables para almacenar la hora, minutos, segundos, día, mes y año.
+            int hh, mm, ss, dia, mes, aa;
+            // Obtiene la hora actual.
+            hh = cal.get(Calendar.HOUR);
+            // Obtiene los segundos actuales.
+            ss = cal.get(Calendar.SECOND);
+            // Obtiene los minutos actuales.
+            mm = cal.get(Calendar.MINUTE);
+            // Obtiene el día del mes actual.
+            dia = cal.get(Calendar.DAY_OF_MONTH);
+            // Obtiene el mes actual (nota: los meses empiezan desde 0 en Calendar, por lo que enero es 0).
+            mes = cal.get(Calendar.MONTH) + 1;
+            // Obtiene el año actual.
+            aa = cal.get(Calendar.YEAR);
+            // Actualiza la etiqueta Lb_hora con la hora, minutos y segundos actuales.
+            Lb_hora.setText(hh + ":" + mm + ":" + ss);
+            // Actualiza la etiqueta Lb_fecha con el día, mes y año actuales.
+            Lb_fecha.setText(dia + "/ " + mes + "/ " + aa);
+        }
+    });
+
 
     public void setBackground_Panel(String ruta_imagen, JPanel panel1) {
         panel1.setOpaque(false);
@@ -99,7 +138,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         panel1.repaint();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -126,8 +165,9 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_citas = new javax.swing.JButton();
         Btn_inventario = new javax.swing.JButton();
         Btn_odontologos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         Btn_nuevoUsuario = new javax.swing.JButton();
+        jLabelImagen = new javax.swing.JLabel();
+        jLabel_TipoNivel = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         jLabel_usuarios = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
@@ -135,13 +175,12 @@ public class FrmAdmin extends javax.swing.JFrame {
         jLabel_titulo = new javax.swing.JLabel();
         Btn_minimizar = new javax.swing.JButton();
         jLabel_usuario = new javax.swing.JLabel();
-        jLabel_TipoNivel = new javax.swing.JLabel();
-        jLabelImagen = new javax.swing.JLabel();
+        Lb_fecha = new javax.swing.JLabel();
+        Lb_hora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(28, 40, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -244,8 +283,6 @@ public class FrmAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/perfil-del-usuario.png"))); // NOI18N
-
         Btn_nuevoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         Btn_nuevoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_nuevoUsuario.setText("Usuarios");
@@ -264,38 +301,48 @@ public class FrmAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_TipoNivel.setForeground(new java.awt.Color(51, 51, 51));
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_citas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_cerrar_sesion)
+                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Btn_nuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel1))
-                    .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_citas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_cerrar_sesion)
-                    .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Btn_nuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel_TipoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(312, 312, 312))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel_TipoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -304,11 +351,12 @@ public class FrmAdmin extends javax.swing.JFrame {
                 .addComponent(Btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Btn_nuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_cerrar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
+        jPanel1.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 200, 530));
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menus.png"))); // NOI18N
         btnMenu.setToolTipText("");
@@ -321,7 +369,7 @@ public class FrmAdmin extends javax.swing.JFrame {
                 btnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 40, -1));
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 40, -1));
 
         jLabel_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/letra-x.png"))); // NOI18N
         jPanel1.add(jLabel_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, -1, 30));
@@ -347,7 +395,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 40, 30));
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_titulo.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel_titulo.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_titulo.setText("Sistema de informacion MJVG");
         jPanel1.add(jLabel_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
@@ -371,13 +419,14 @@ public class FrmAdmin extends javax.swing.JFrame {
         jPanel1.add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, -1, 30));
 
         jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel_usuario.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 450, 30));
+        jLabel_usuario.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(jLabel_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 450, 30));
 
-        jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel_TipoNivel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 260, 30));
-        jPanel1.add(jLabelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 50, 40));
+        Lb_fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(Lb_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 110, 20));
+
+        Lb_hora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(Lb_hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 110, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -394,14 +443,7 @@ public class FrmAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        int posicion = btnMenu.getX();
-        if (posicion > 5) {
-            Animacion.Animacion.mover_izquierda(211, 5, 2, 2, btnMenu);
-            Animacion.Animacion.mover_izquierda(5, -200, 2, 2, pnlMenu);
-        } else {
-            Animacion.Animacion.mover_derecha(5, 210, 2, 2, btnMenu);
-            Animacion.Animacion.mover_derecha(-200, 5, 2, 2, pnlMenu);
-        }
+
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void Btn_cerrar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrar_sesionActionPerformed
@@ -577,9 +619,10 @@ public class FrmAdmin extends javax.swing.JFrame {
     private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_nuevoUsuario;
     private javax.swing.JButton Btn_odontologos;
+    private javax.swing.JLabel Lb_fecha;
+    private javax.swing.JLabel Lb_hora;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btn_pacientes;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabel_TipoNivel;
     private javax.swing.JLabel jLabel_Wallpaper;
@@ -590,33 +633,5 @@ public class FrmAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
 
-    // Método para mostrar la imagen en jLabel_foto
-//    private void mostrarImagen(byte[] imagenBytes) {
-//        if (imagenBytes != null) {
-//            try {
-//                // Convertir el array de bytes a un objeto Image
-//                ByteArrayInputStream bais = new ByteArrayInputStream(imagenBytes);
-//                Image imagen = ImageIO.read(bais);
-//
-//                // Escalar la imagen a las dimensiones del jLabel_foto
-//                Image scaledImagen = imagen.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
-//
-//                // Establecer la imagen escalada como el ícono del jLabel_foto
-//                jLabel_foto.setIcon(new ImageIcon(scaledImagen));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                JOptionPane.showMessageDialog(this, "Error al cargar la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } else {
-//            jLabel_foto.setIcon(null); // Si no hay imagen, eliminar el ícono
-//        }
-//    }
-    // Método para cargar datos de un usuario, incluida la imagen
-//    private void cargarDatosUsuario(int id_usuario) {
-//        System.out.println("Cargando datos para el usuario con ID: " + id_usuario); // Mensaje de depuración
-//
-//        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-//        byte[] imagenBytes = controlUsuario.obtenerImagenUsuarioPorId(id_usuario);
-//        mostrarImagen(imagenBytes);
-//    }
+ 
 }

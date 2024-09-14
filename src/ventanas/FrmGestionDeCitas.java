@@ -78,7 +78,6 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         Btn_guardar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -124,10 +123,6 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Nombre :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -294,7 +289,6 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_cabecera;
     private javax.swing.JLabel jLabel_usuario;
@@ -315,7 +309,6 @@ private void aplicarTemaClaro() {
         jPanel1.setBackground(fondoClaro); // Establece el color de fondo del panel para el tema claro.
         jToggleButton1.setBackground(botonOscuro); // Establece el color de fondo del botón para el tema claro.
         jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema claro.
-        jLabel1.setForeground(textoOscuro); // Establece el color del texto de la etiqueta para el tema claro.
         jTextField1.setBackground(fondoOscuro); // Establece el color de fondo del campo de texto para el tema claro.
         jTextField1.setForeground(textoClaro); // Establece el color del texto del campo de texto para el tema claro.
         Btn_guardar.setBackground(botonOscuro); // Establece el color de fondo del botón adicional para el tema claro.
@@ -329,7 +322,6 @@ private void aplicarTemaClaro() {
         jPanel1.setBackground(fondoOscuro); // Establece el color de fondo del panel para el tema oscuro.
         jToggleButton1.setBackground(botonClaro); // Establece el color de fondo del botón para el tema oscuro.
         jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema oscuro.
-        jLabel1.setForeground(textoClaro); // Establece el color del texto de la etiqueta para el tema oscuro.
         jTextField1.setBackground(fondoClaro); // Establece el color de fondo del campo de texto para el tema oscuro.
         jTextField1.setForeground(textoOscuro); // Establece el color del texto del campo de texto para el tema oscuro.
         Btn_guardar.setBackground(botonClaro); // Establece el color de fondo del botón adicional para el tema oscuro.

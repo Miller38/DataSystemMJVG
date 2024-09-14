@@ -20,24 +20,31 @@ import modelo.Usuario;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
+    // Variables estáticas que almacenarán el nombre del usuario que ha iniciado sesión y el tipo de nivel del usuario.
     private static String nombreUsuarioLogueado;
     private static String usuarioTipoNivel;
      
-
+    // Constructor de la clase FrmLogin
     public FrmLogin() {
-
+        // Establecer el JFrame sin bordes decorativos
         setUndecorated(true);
-
+        // Inicializar los componentes visuales (generado automáticamente por NetBeans u otro IDE)
         initComponents();
+        // Establecer el tamaño de la ventana (JFrame)
         this.setSize(400, 550);
+        // No permitir que el usuario cambie el tamaño de la ventana
         this.setResizable(false);
+        // Establecer el título de la ventana
         this.setTitle("Acceso al sistema");
+         // Centrar la ventana en la pantalla
         this.setLocationRelativeTo(null);
         
          // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
-
+        
+        // Agregar un placeholder (sugerencia de texto) en el campo de nombre de usuario
         TextPrompt usuaPrompt = new TextPrompt("   Ingrese su nombre de usuario.", txt_username);
+        // Agregar un placeholder (sugerencia de texto) en el campo de contraseña
         TextPrompt passwPrompt = new TextPrompt("         Ingrese su contraseña.", txt_password);
 
         // Hace visible el campo de texto para la contraseña oculta
@@ -258,6 +265,7 @@ public class FrmLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new FrmLogin().setVisible(true);
             }
         });

@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import modelo.Usuario;
 
 
@@ -73,6 +74,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+        
+         getRootPane().setBorder(new LineBorder(Color.WHITE, 1, true));
 
    // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
@@ -495,8 +498,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_ver_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_usuariosActionPerformed
@@ -615,9 +616,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_registrado_porMouseExited
 
     private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
-        dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed

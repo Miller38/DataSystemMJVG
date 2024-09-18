@@ -43,10 +43,12 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         
         jToggleButton1.setIcon(iconoLuna); // Establece el ícono inicial del botón como luna
         
+         // Obtiene el nombre del usuario logueado desde el formulario de login
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
-        jLabel_usuario.setText("Usuario: " + nombreUsuario);
-        
-         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
+      // Establece el texto del JLabel con el nombre del usuario logueado
+        jLabel_usuario.setText("Usuario " + nombreUsuario);
+       // Obtiene el tipo o nivel de usuario desde el formulario de login
+        String tipoNivel = FrmLogin.getUsuarioTipoNivel();
         
                 // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
@@ -77,7 +79,6 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        Btn_guardar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,15 +86,17 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel_cabecera = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        Btn_regresar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        Btn_agendarCita = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,28 +109,11 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         });
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 40, 30));
 
-        Btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_guardar.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_guardar.setText("Guardar");
-        Btn_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Btn_guardarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Btn_guardarMouseExited(evt);
-            }
-        });
-        Btn_guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_guardarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
-
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 180, 20));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -141,7 +127,7 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 680, 10));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 680, 10));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,18 +144,6 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         jButton9.setText("-");
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, -1, -1));
         jPanel1.add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 50));
-
-        jButton1.setText("Agregar Cita");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-
-        jButton2.setText("Eliminar Cita");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
-
-        jButton3.setText("Editar Cita");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
-
-        jButton4.setText("Buscar Cita");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
 
         jButton5.setText("Buscar");
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
@@ -190,7 +164,7 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 680, 110));
 
         jButton6.setText("Imprimir Cita ");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
 
         jButton7.setText("Exportar excel");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +172,59 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
+
+        Btn_regresar.setText("Regresar");
+        Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_regresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton3.setText("Todas");
+
+        Btn_agendarCita.setText("Nueva cita");
+        Btn_agendarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_agendarCitaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Canceladas");
+
+        jButton1.setText("Proximas");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jButton1)
+                .addGap(51, 51, 51)
+                .addComponent(jButton2)
+                .addGap(53, 53, 53)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(Btn_agendarCita)
+                .addGap(36, 36, 36))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Btn_agendarCita)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 540, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,21 +252,18 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void Btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseEntered
-       
-    }//GEN-LAST:event_Btn_guardarMouseEntered
-
-    private void Btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_guardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_guardarActionPerformed
-
-    private void Btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_guardarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_guardarMouseExited
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_Btn_regresarActionPerformed
+
+    private void Btn_agendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_agendarCitaActionPerformed
+       FrmAgendarCita frmAgendarCita = new FrmAgendarCita();
+       frmAgendarCita.setVisible(true);
+    }//GEN-LAST:event_Btn_agendarCitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,11 +302,11 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_guardar;
+    private javax.swing.JButton Btn_agendarCita;
+    private javax.swing.JButton Btn_regresar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -294,6 +317,7 @@ public class FrmGestionDeCitas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_usuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -311,8 +335,8 @@ private void aplicarTemaClaro() {
         jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema claro.
         jTextField1.setBackground(fondoOscuro); // Establece el color de fondo del campo de texto para el tema claro.
         jTextField1.setForeground(textoClaro); // Establece el color del texto del campo de texto para el tema claro.
-        Btn_guardar.setBackground(botonOscuro); // Establece el color de fondo del botón adicional para el tema claro.
-        Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema claro.
+        Btn_regresar.setBackground(botonOscuro); // Establece el color de fondo del botón adicional para el tema claro.
+        Btn_regresar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema claro.
     }
 
     /**
@@ -324,7 +348,7 @@ private void aplicarTemaClaro() {
         jToggleButton1.setForeground(textoOscuro); // Establece el color del texto del botón para el tema oscuro.
         jTextField1.setBackground(fondoClaro); // Establece el color de fondo del campo de texto para el tema oscuro.
         jTextField1.setForeground(textoOscuro); // Establece el color del texto del campo de texto para el tema oscuro.
-        Btn_guardar.setBackground(botonClaro); // Establece el color de fondo del botón adicional para el tema oscuro.
-        Btn_guardar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema oscuro.
+        Btn_regresar.setBackground(botonClaro); // Establece el color de fondo del botón adicional para el tema oscuro.
+        Btn_regresar.setForeground(textoOscuro); // Establece el color del texto del botón adicional para el tema oscuro.
     }
 }

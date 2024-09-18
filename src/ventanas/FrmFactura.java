@@ -20,6 +20,7 @@ public class FrmFactura extends javax.swing.JFrame {
         this.setSize(770, 481);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
          String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();        
          jLabel_usuario.setText("Usuario: " + nombreUsuario);
@@ -254,9 +255,6 @@ public class FrmFactura extends javax.swing.JFrame {
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         this.dispose();
-        this.setVisible(false);
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
@@ -265,9 +263,6 @@ public class FrmFactura extends javax.swing.JFrame {
 
     private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
        this.dispose();
-       this.setVisible(false);
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     /**

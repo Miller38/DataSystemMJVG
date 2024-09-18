@@ -253,6 +253,11 @@ public class FrmAdmin extends javax.swing.JFrame {
                 Btn_citasMouseExited(evt);
             }
         });
+        Btn_citas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_citasActionPerformed(evt);
+            }
+        });
 
         Btn_inventario.setBackground(new java.awt.Color(255, 255, 255));
         Btn_inventario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -573,6 +578,11 @@ public class FrmAdmin extends javax.swing.JFrame {
         FrmOdontologo frmOdontologo = new FrmOdontologo();
         frmOdontologo.setVisible(true);
     }//GEN-LAST:event_Btn_odontologosActionPerformed
+
+    private void Btn_citasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_citasActionPerformed
+       FrmGestionDeCitas frmGestionDeCitas = new FrmGestionDeCitas();
+       frmGestionDeCitas.setVisible(true);
+    }//GEN-LAST:event_Btn_citasActionPerformed
 
     /**
      * @param args the command line arguments

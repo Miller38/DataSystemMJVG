@@ -33,27 +33,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
          // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
 
-        /*
-    * ------------------------------------------------------------------------------------------------------------------------
-    *                                                            Colocar imagen de fondo
-    * ------------------------------------------------------------------------------------------------------------------------
-         */
-        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
-//        ImageIcon wallpaper = new ImageIcon("src/images/bg-gradiente.jpg");
-//        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
-//        // Obtiene la imagen del ImageIcon
-//        Icon icono = new ImageIcon(
-//                wallpaper.getImage().getScaledInstance( // Escala la imagen
-//                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
-//                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
-//                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
-//                )
-//        );
-//        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
-//        jLabel_Wallpaper.setIcon(icono);
-//        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
-//        this.repaint();
-
         // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/images/fondo3.jpg");
@@ -70,7 +49,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jLabel_cabecera.setIcon(icono_);
 // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -226,8 +204,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         dispose();
-        FrmNuevoUsuario frmNuevoUsuario = new FrmNuevoUsuario();
-        frmNuevoUsuario.setVisible(true);
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_reporte_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfActionPerformed
@@ -237,8 +213,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
     private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
         dispose();
-        FrmNuevoUsuario frmNuevoUsuario = new FrmNuevoUsuario();
-        frmNuevoUsuario.setVisible(true);
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed

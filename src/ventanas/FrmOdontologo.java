@@ -100,7 +100,7 @@ public class FrmOdontologo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        Btn_verOdontologos = new javax.swing.JButton();
         Btn_actualizar = new javax.swing.JButton();
         Btn_eliminar = new javax.swing.JButton();
         Btn_guardar = new javax.swing.JButton();
@@ -143,24 +143,24 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setText("Ver odontologos");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        Btn_verOdontologos.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_verOdontologos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Btn_verOdontologos.setForeground(new java.awt.Color(51, 51, 51));
+        Btn_verOdontologos.setText("Ver odontologos");
+        Btn_verOdontologos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
+                Btn_verOdontologosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
+                Btn_verOdontologosMouseExited(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Btn_verOdontologos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                Btn_verOdontologosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 130, -1));
+        jPanel1.add(Btn_verOdontologos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 130, -1));
 
         Btn_actualizar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_actualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -541,8 +541,7 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         this.dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
+       
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_minimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_minimizarActionPerformed
@@ -551,8 +550,7 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
     private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
         this.dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
+        
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered
@@ -747,17 +745,18 @@ public class FrmOdontologo extends javax.swing.JFrame {
         //Btn_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_Btn_buscarMouseExited
 
-    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+    private void Btn_verOdontologosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_verOdontologosMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseEntered
+    }//GEN-LAST:event_Btn_verOdontologosMouseEntered
 
-    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+    private void Btn_verOdontologosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_verOdontologosMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseExited
+    }//GEN-LAST:event_Btn_verOdontologosMouseExited
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void Btn_verOdontologosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_verOdontologosActionPerformed
+        FrmGestionarOdontologos frmGestionarOdontologos = new FrmGestionarOdontologos();
+        frmGestionarOdontologos.setVisible(true);
+    }//GEN-LAST:event_Btn_verOdontologosActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         if (jToggleButton1.isSelected()) {
@@ -856,9 +855,9 @@ public class FrmOdontologo extends javax.swing.JFrame {
     private javax.swing.JButton Btn_guardar;
     private javax.swing.JButton Btn_minimizar;
     private javax.swing.JButton Btn_regresar;
+    private javax.swing.JButton Btn_verOdontologos;
     private javax.swing.JComboBox<String> Cmb_genero;
     private javax.swing.JComboBox<String> Cmb_tipo_identificacion;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

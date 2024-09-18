@@ -1,11 +1,13 @@
 package ventanas;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -32,6 +34,10 @@ public class SplashScreen extends javax.swing.JFrame {
         setTitle("SplashScreen");
         // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+        
+         // Agregar un borde personalizado
+        getRootPane().setBorder(new LineBorder(Color.WHITE, 1, true));
+        
 
         // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
@@ -84,7 +90,7 @@ public class SplashScreen extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 60)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Milliany Tech");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 

@@ -596,8 +596,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
         this.dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
+       
 
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
@@ -821,8 +820,7 @@ public class FrmPacientes extends javax.swing.JFrame {
 
     private void Btn_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarActionPerformed
         dispose();
-        FrmAdmin frmAdmin = new FrmAdmin();
-        frmAdmin.setVisible(true);
+       
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_cerrarMouseEntered

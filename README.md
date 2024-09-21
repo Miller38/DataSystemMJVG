@@ -1,5 +1,6 @@
 
-<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38/DataSystemMJVG" />
+<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38/DataSystemMJVG" alt="Visitor Badge" />
+
 
 
 <h2>Sistema Informacion Consultorio Odontologico Maria Jose Velez G</h2>

@@ -211,6 +211,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         btn_pacientes.setBackground(new java.awt.Color(255, 255, 255));
         btn_pacientes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_pacientes.setText("Pacientes");
+        btn_pacientes.setToolTipText("Click para gestionar pacientes");
         btn_pacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_pacientesMouseEntered(evt);
@@ -228,6 +229,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_facturacion.setBackground(new java.awt.Color(255, 255, 255));
         Btn_facturacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_facturacion.setText("Facturacion");
+        Btn_facturacion.setToolTipText("Click para gestionar facturas");
         Btn_facturacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_facturacionMouseEntered(evt);
@@ -245,6 +247,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_citas.setBackground(new java.awt.Color(255, 255, 255));
         Btn_citas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_citas.setText("Citas");
+        Btn_citas.setToolTipText("Click para gestionar citas");
         Btn_citas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_citasMouseEntered(evt);
@@ -262,6 +265,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_inventario.setBackground(new java.awt.Color(255, 255, 255));
         Btn_inventario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_inventario.setText("Inventario");
+        Btn_inventario.setToolTipText("Click para gestionar el inventario");
         Btn_inventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_inventarioMouseEntered(evt);
@@ -274,6 +278,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_odontologos.setBackground(new java.awt.Color(255, 255, 255));
         Btn_odontologos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_odontologos.setText("Odontologos");
+        Btn_odontologos.setToolTipText("Click para gestionar odontologos");
         Btn_odontologos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_odontologosMouseEntered(evt);
@@ -290,7 +295,8 @@ public class FrmAdmin extends javax.swing.JFrame {
 
         Btn_nuevoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         Btn_nuevoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Btn_nuevoUsuario.setText("Usuarios");
+        Btn_nuevoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        Btn_nuevoUsuario.setText("   Usuarios");
         Btn_nuevoUsuario.setToolTipText("Click para gestionar usuarios");
         Btn_nuevoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -308,6 +314,7 @@ public class FrmAdmin extends javax.swing.JFrame {
 
         jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_TipoNivel.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_TipoNivel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -318,20 +325,16 @@ public class FrmAdmin extends javax.swing.JFrame {
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_citas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_cerrar_sesion)
                             .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(Btn_nuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel_TipoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btn_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Btn_facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Btn_odontologos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_TipoNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -384,6 +387,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_cerrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Btn_cerrar.setForeground(new java.awt.Color(0, 0, 0));
         Btn_cerrar.setText("x");
+        Btn_cerrar.setToolTipText("Cerrar");
         Btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_cerrarMouseEntered(evt);
@@ -408,6 +412,7 @@ public class FrmAdmin extends javax.swing.JFrame {
         Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Btn_minimizar.setForeground(new java.awt.Color(0, 0, 0));
         Btn_minimizar.setText("-");
+        Btn_minimizar.setToolTipText("minimizar");
         Btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Btn_minimizarMouseEntered(evt);

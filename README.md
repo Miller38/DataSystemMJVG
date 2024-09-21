@@ -7,7 +7,7 @@
 ¡Descubre cómo funciona nuestra aplicación en acción! 🎬  
 Haz clic en el siguiente enlace para ver un video demostrativo donde explicamos sus principales características y funcionalidades:
 
-[Mira el video aquí](https://vimeo.com/1009518281)
+[Mira el video aquí](https://vimeo.com/1011675408?share=copy)
 
 ## Tecnologías Utilizadas
 

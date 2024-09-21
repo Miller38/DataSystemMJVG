@@ -1,26 +1,26 @@
 
-<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38.sistema-informacion-consultorio" />
+<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38/DataSystemMJVG" />
 
 
-<h3>Sistema Informacion Consultorio Odontologico Maria Jose Velez G</h3>
+<h2>Sistema Informacion Consultorio Odontologico Maria Jose Velez G</h2>
 
-<h5>Splashscreen</h5>
+<h3>Splashscreen</h3>
 
 ![Preview 1](preview1.jpg)
 
-<h5>Login</h5>
+<h3>Login</h3>
 
 ![Preview 2](preview2.jpg)
 
-<h5>Admin</h5>
+<h3>Admin</h3>
 
 ![Preview 3](preview3.jpg)
 
-<h5>Gestion Usuarios</h5>
+<h3>Gestion Usuarios</h3>
 
 ![Preview 4](preview4.jpg)
 
-<h5>Gestion Pacientes</h5>
+<h3>Gestion Pacientes</h3>
 
 ![Preview 5](preview5.jpg)
 

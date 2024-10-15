@@ -17,7 +17,7 @@ public class FrmFactura extends javax.swing.JFrame {
         setUndecorated(true);
 
         initComponents();
-        this.setSize(770, 481);
+        this.setSize(900, 512);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -80,7 +80,6 @@ public class FrmFactura extends javax.swing.JFrame {
         Btn_minimizar = new javax.swing.JButton();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -107,6 +106,7 @@ public class FrmFactura extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Btn_regresar = new javax.swing.JButton();
+        jTextField9 = new javax.swing.JTextField();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,9 +146,6 @@ public class FrmFactura extends javax.swing.JFrame {
 
         jLabel2.setText("Paciente :");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un paciente", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, -1));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 140, -1));
 
         jButton1.setText("Buscar");
@@ -248,6 +245,7 @@ public class FrmFactura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 190, -1));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 480));
 
         pack();
@@ -308,7 +306,6 @@ public class FrmFactura extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -335,5 +332,6 @@ public class FrmFactura extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

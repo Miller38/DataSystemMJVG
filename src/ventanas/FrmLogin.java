@@ -34,9 +34,7 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setSize(400, 550);
         // No permitir que el usuario cambie el tamaño de la ventana
         this.setResizable(false);
-        // Establecer el título de la ventana
-        this.setTitle("Acceso al sistema");
-         // Centrar la ventana en la pantalla
+               // Centrar la ventana en la pantalla
         this.setLocationRelativeTo(null);
         
          // Redondear las esquinas del jframe 
@@ -343,4 +341,6 @@ public class FrmLogin extends javax.swing.JFrame {
     public static String getUsuarioTipoNivel() {
         return usuarioTipoNivel;
     }
+    
+   
 }

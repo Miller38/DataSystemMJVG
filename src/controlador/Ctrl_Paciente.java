@@ -4,9 +4,8 @@ import java.sql.*;
 import conexion.Conexion;
 import modelo.Paciente;
 import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import ventanas.FrmPacientes;
+
 
 /**
  *
@@ -263,57 +262,79 @@ public class Ctrl_Paciente {
     //---------------------------------------------------------------------------------------------------------------------//
     //                                      Método para obtener los datos de un paciente por ID
     //---------------------------------------------------------------------------------------------------------------------//
-    // Método para obtener los datos de un paciente por ID
-    public Paciente obtenerPacientePorId(int id) {
-        Paciente paciente = null;
+        // Método para obtener los datos de un paciente por ID
+        public Paciente obtenerPacientePorId(int id) {
+            Paciente paciente = null;
 
-        try {
-            Connection con = Conexion.conectar();
-            String sql = "SELECT id, nombre, apellido, direccion, ciudad, pais, telefono, email, fechaNacimiento, "
-                    + "genero,  identificacion, tipo_identificacion,tipo_sangre,estado_civil, ocupacion ,"
-                    + "imagen FROM tb_pacientes WHERE id = ?";
+            try {
+                Connection con = Conexion.conectar();
+                String sql = "SELECT id, nombre, apellido, direccion, ciudad, pais, telefono, email, fechaNacimiento, "
+                        + "genero,  identificacion, tipo_identificacion,tipo_sangre,estado_civil, ocupacion ,"
+                        + "imagen FROM tb_pacientes WHERE id = ?";
 
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
+                PreparedStatement pst = con.prepareStatement(sql);
+                pst.setInt(1, id);
+                ResultSet rs = pst.executeQuery();
 
-            if (rs.next()) {
-                paciente = new Paciente();
+                if (rs.next()) {
+                    paciente = new Paciente();
 
-                paciente.setId(rs.getInt(1));
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setApellido(rs.getString("apellido"));
-                paciente.setDireccion(rs.getString("direccion"));
-                paciente.setCiudad(rs.getString("ciudad"));
-                paciente.setPais(rs.getString("pais"));
-                paciente.setTelefono(rs.getString("telefono"));
-                paciente.setEmail(rs.getString("email"));
+                    paciente.setId(rs.getInt(1));
+                    paciente.setNombre(rs.getString("nombre"));
+                    paciente.setApellido(rs.getString("apellido"));
+                    paciente.setDireccion(rs.getString("direccion"));
+                    paciente.setCiudad(rs.getString("ciudad"));
+                    paciente.setPais(rs.getString("pais"));
+                    paciente.setTelefono(rs.getString("telefono"));
+                    paciente.setEmail(rs.getString("email"));
 
-                // Asignar la fecha de nacimiento, asegúrate de convertir correctamente si es necesario
-            paciente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
-                
+                    // Asignar la fecha de nacimiento, asegúrate de convertir correctamente si es necesario
+                paciente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
 
-                paciente.setGenero(rs.getString("genero"));
-                paciente.setIdentificacion(rs.getString("identificacion"));
-                paciente.setTipo_identificacion(rs.getString("tipo_identificacion"));
-                paciente.setTipo_sangre(rs.getString("tipo_sangre"));
-                paciente.setEstado_civil(rs.getString("estado_civil"));
-                paciente.setOcupacion(rs.getString("ocupacion"));
-                
-                 // Obtener la imagen como un array de bytes y asignarla al objeto Paciente
-            byte[] imagenBytes = rs.getBytes("imagen");
-            if (imagenBytes != null) {
-                paciente.setImagen(imagenBytes);
+
+                    paciente.setGenero(rs.getString("genero"));
+                    paciente.setIdentificacion(rs.getString("identificacion"));
+                    paciente.setTipo_identificacion(rs.getString("tipo_identificacion"));
+                    paciente.setTipo_sangre(rs.getString("tipo_sangre"));
+                    paciente.setEstado_civil(rs.getString("estado_civil"));
+                    paciente.setOcupacion(rs.getString("ocupacion"));
+
+                     // Obtener la imagen como un array de bytes y asignarla al objeto Paciente
+                byte[] imagenBytes = rs.getBytes("imagen");
+                if (imagenBytes != null) {
+                    paciente.setImagen(imagenBytes);
+                }
+
+
+                }
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error al obtener datos del paciente: " + e.getMessage());
             }
-           
 
-            }
-            con.close();
-        } catch (SQLException e) {
-            System.out.println("Error al obtener datos del paciente: " + e.getMessage());
+            return paciente;
         }
 
-        return paciente;
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                                                   Metodo para mostrar la cantidad de usuarios 
+    //---------------------------------------------------------------------------------------------------------------------//
+    public int contarPacientes() {
+        int totalPacientes = 0;
+        String sql = "SELECT  COUNT(*) AS total from tb_pacientes";
+
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalPacientes = rs.getInt("total");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Maneja excepciones
+        }
+        return totalPacientes; // Retorna el total de usuarios
     }
+   
 
 }

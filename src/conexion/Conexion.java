@@ -11,7 +11,7 @@ public class Conexion {
     // conexion local
     public static Connection conectar() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:33065/bd_ds", "root", "");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_ds", "root", "");
             return cn;
         } catch (SQLException e) {
             e.printStackTrace(); // Imprime el seguimiento completo del error en la consola

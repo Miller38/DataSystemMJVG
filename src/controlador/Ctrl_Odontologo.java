@@ -1,8 +1,15 @@
 package controlador;
 
-import java.sql.*;
 import conexion.Conexion;
+import java.awt.List;
 import modelo.Odontologo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -191,4 +198,25 @@ public class Ctrl_Odontologo {
         return  respuesta;
     }
     
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                                                   Metodo para mostrar la cantidad de usuarios 
+    //---------------------------------------------------------------------------------------------------------------------//
+    public int contarOdontologo() {
+        int totalOdontologos = 0;
+        String sql = "SELECT  COUNT(*) AS total from tb_odontologos";
+
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalOdontologos = rs.getInt("total");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Maneja excepciones
+        }
+        return totalOdontologos; // Retorna el total de usuarios
+    }
+
 }

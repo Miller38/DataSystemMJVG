@@ -15,63 +15,62 @@ public class Ctrl_Usuario {
     * ------------------------------------------------------------------------------------------------------------------------
      */
     public Usuario loginUser(Usuario objeto) {
-    Usuario usuario = null; // Inicializa la variable 'usuario' como null
-    // SQL para seleccionar el usuario basándose en el nombre de usuario
-    String sql = "SELECT id_usuario, tipo_nivel, estatus, password FROM tb_usuarios WHERE username = ?";
-    try (
-            // Establece la conexión a la base de datos y prepara la consulta
-            Connection cn = Conexion.conectar(); 
-            PreparedStatement pst = cn.prepareStatement(sql)) {
-        
-        if (cn != null) {
-            // Imprime mensaje de éxito si la conexión es exitosa
-            System.out.println("Conexión exitosa a la base de datos.");
-        } else {
-            // Imprime mensaje de error si la conexión falla y retorna null
-            System.out.println("Error al conectar a la base de datos.");
-            return null;
-        }
-
-        // Establece el parámetro del nombre de usuario en la consulta
-        pst.setString(1, objeto.getUsername());
-
+        Usuario usuario = null; // Inicializa la variable 'usuario' como null
+        // SQL para seleccionar el usuario basándose en el nombre de usuario
+        String sql = "SELECT id_usuario, tipo_nivel, estatus, password FROM tb_usuarios WHERE username = ?";
         try (
-                // Ejecuta la consulta y obtiene el resultado
-                ResultSet rs = pst.executeQuery()) {
-            
-            if (rs.next()) {
-                // Obtiene los datos del usuario desde el ResultSet
-                int id_usuario = rs.getInt("id_usuario");
-                String tipo_nivel = rs.getString("tipo_nivel");
-                String estatus = rs.getString("estatus");
-                String passwordAlmacenada = rs.getString("password");
+                // Establece la conexión a la base de datos y prepara la consulta
+                Connection cn = Conexion.conectar(); PreparedStatement pst = cn.prepareStatement(sql)) {
 
-                // Encriptar la contraseña proporcionada por el usuario para comparar
-                String passwordIngresada = Utilidades.encriptarSHA3(objeto.getPassword());
-
-                // Compara la contraseña ingresada con la almacenada en la base de datos
-                if (passwordIngresada.equals(passwordAlmacenada)) {
-                    usuario = new Usuario(); // Crea un nuevo objeto Usuario
-                    usuario.setId_usuario(id_usuario); // Establece el ID del usuario
-                    usuario.setUsername(objeto.getUsername()); // Establece el nombre de usuario
-                    usuario.setTipo_nivel(tipo_nivel); // Establece el tipo de nivel
-                    usuario.setEstatus(estatus); // Establece el estatus
-                } else {
-                    // Imprime mensaje si la contraseña no coincide
-                    System.out.println("La contraseña no coincide.");
-                }
+            if (cn != null) {
+                // Imprime mensaje de éxito si la conexión es exitosa
+                System.out.println("Conexión exitosa a la base de datos.");
             } else {
-                // Imprime mensaje si no se encuentra el usuario
-                System.out.println("No se encontró ningún usuario con el nombre de usuario proporcionado.");
+                // Imprime mensaje de error si la conexión falla y retorna null
+                System.out.println("Error al conectar a la base de datos.");
+                return null;
             }
+
+            // Establece el parámetro del nombre de usuario en la consulta
+            pst.setString(1, objeto.getUsername());
+
+            try (
+                    // Ejecuta la consulta y obtiene el resultado
+                    ResultSet rs = pst.executeQuery()) {
+
+                if (rs.next()) {
+                    // Obtiene los datos del usuario desde el ResultSet
+                    int id_usuario = rs.getInt("id_usuario");
+                    String tipo_nivel = rs.getString("tipo_nivel");
+                    String estatus = rs.getString("estatus");
+                    String passwordAlmacenada = rs.getString("password");
+
+                    // Encriptar la contraseña proporcionada por el usuario para comparar
+                    String passwordIngresada = Utilidades.encriptarSHA3(objeto.getPassword());
+
+                    // Compara la contraseña ingresada con la almacenada en la base de datos
+                    if (passwordIngresada.equals(passwordAlmacenada)) {
+                        usuario = new Usuario(); // Crea un nuevo objeto Usuario
+                        usuario.setId_usuario(id_usuario); // Establece el ID del usuario
+                        usuario.setUsername(objeto.getUsername()); // Establece el nombre de usuario
+                        usuario.setTipo_nivel(tipo_nivel); // Establece el tipo de nivel
+                        usuario.setEstatus(estatus); // Establece el estatus
+                    } else {
+                        // Imprime mensaje si la contraseña no coincide
+                        System.out.println("La contraseña no coincide.");
+                    }
+                } else {
+                    // Imprime mensaje si no se encuentra el usuario
+                    System.out.println("No se encontró ningún usuario con el nombre de usuario proporcionado.");
+                }
+            }
+        } catch (SQLException e) {
+            // Maneja las excepciones SQL y muestra un mensaje de error
+            // Logger.getLogger(Ctrl_Usuario.class.getName()).log(Level.SEVERE, "Error al autenticar al usuario", e);
+            JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
         }
-    } catch (SQLException e) {
-        // Maneja las excepciones SQL y muestra un mensaje de error
-        // Logger.getLogger(Ctrl_Usuario.class.getName()).log(Level.SEVERE, "Error al autenticar al usuario", e);
-        JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
+        return usuario; // Retorna el usuario autenticado o null si no se autenticó
     }
-    return usuario; // Retorna el usuario autenticado o null si no se autenticó
-}
 
     //---------------------------------------------------------------------------------------------------------------------//
     //                                                               Metodo para guardar un usuario
@@ -85,10 +84,10 @@ public class Ctrl_Usuario {
         try {
             // Establece la conexión a la base de datos
             Connection cn = Conexion.conectar();
-             // Prepara la consulta SQL para la inserción de datos
+            // Prepara la consulta SQL para la inserción de datos
             PreparedStatement pst = cn.prepareStatement(sql);
 
-             // Establece los valores de los parámetros en la consulta
+            // Establece los valores de los parámetros en la consulta
             pst.setString(1, usuario.getNombre_usuario()); // Establece el nombre del usuario
             pst.setString(2, usuario.getEmail()); // Establece el email del usuario
             pst.setString(3, usuario.getTelefono()); // Establece el teléfono del usuario
@@ -98,21 +97,21 @@ public class Ctrl_Usuario {
             pst.setString(6, usuario.getTipo_nivel()); // Establece el tipo de nivel del usuario
             pst.setString(7, usuario.getEstatus()); // Establece el estatus del usuario
             pst.setString(8, usuario.getRegistrado_por()); // Establece el nombre del registrador
-            
+
             // Obtiene la imagen del usuario
-             byte[] imagen = usuario.getImagen();
+            byte[] imagen = usuario.getImagen();
             if (imagen != null) {
-                 // Si la imagen no es null, se establece como un parámetro de tipo byte[]
+                // Si la imagen no es null, se establece como un parámetro de tipo byte[]
                 pst.setBytes(9, imagen);
             } else {
-                 // Si la imagen es null, se establece el parámetro como null en la base de datos
+                // Si la imagen es null, se establece el parámetro como null en la base de datos
                 pst.setNull(9, java.sql.Types.BLOB);
             }
-             // Ejecuta la actualización en la base de datos y verifica si la inserción fue exitosa
+            // Ejecuta la actualización en la base de datos y verifica si la inserción fue exitosa
             if (pst.executeUpdate() > 0) {
                 respuesta = true;  // Cambia la respuesta a true si la inserción fue exitosa
             }
-             // Cierra la conexión a la base de datos
+            // Cierra la conexión a la base de datos
             cn.close();
         } catch (SQLException e) {
             // Captura y muestra cualquier excepción SQL que ocurra durante la ejecución
@@ -134,7 +133,7 @@ public class Ctrl_Usuario {
         try {
             // Establece la conexión a la base de datos
             Connection cn = Conexion.conectar();
-             // Prepara la consulta SQL para la actualización de datos
+            // Prepara la consulta SQL para la actualización de datos
             PreparedStatement pst = cn.prepareStatement(sql);
 
             // Establece los valores de los parámetros en la consulta
@@ -142,14 +141,14 @@ public class Ctrl_Usuario {
             pst.setString(2, usuario.getEmail());
             pst.setString(3, usuario.getTelefono());
             pst.setString(4, usuario.getUsername());
-             // Encripta la contraseña del usuario antes de actualizarla en la base de datos
+            // Encripta la contraseña del usuario antes de actualizarla en la base de datos
             pst.setString(5, Utilidades.encriptarSHA3(usuario.getPassword()));
             pst.setString(6, usuario.getTipo_nivel());
             pst.setString(7, usuario.getEstatus());
             pst.setString(8, usuario.getRegistrado_por());
 
-             // Obtiene la imagen del usuario
-           byte[] imagen = usuario.getImagen();
+            // Obtiene la imagen del usuario
+            byte[] imagen = usuario.getImagen();
             if (imagen != null) {
                 // Si la imagen no es null, se establece como un parámetro de tipo byte[]
                 pst.setBytes(9, imagen);
@@ -157,10 +156,10 @@ public class Ctrl_Usuario {
                 // Si la imagen es null, se establece el parámetro como null en la base de datos
                 pst.setNull(9, java.sql.Types.BLOB);
             }
-             // Establece el ID del usuario que se actualizará
-            pst.setInt(10, usuario.getId_usuario()); 
+            // Establece el ID del usuario que se actualizará
+            pst.setInt(10, usuario.getId_usuario());
 
-             // Ejecuta la actualización en la base de datos y verifica si la actualización fue exitosa
+            // Ejecuta la actualización en la base de datos y verifica si la actualización fue exitosa
             if (pst.executeUpdate() > 0) {
                 respuesta = true;   // Cambia la respuesta a true si la actualización fue exitosa
             }
@@ -170,19 +169,20 @@ public class Ctrl_Usuario {
             // Captura y muestra cualquier excepción SQL que ocurra durante la ejecución
             System.out.println("Error al actualizar el usuario: " + e);
         }
-         // Retorna la respuesta indicando si la actualización fue exitosa o no
+        // Retorna la respuesta indicando si la actualización fue exitosa o no
         return respuesta;
     }
 //----------------------------------------------------------------------------------------------------------------------//
 //                                                     Método para eliminar un usuario de la base de datos
 //----------------------------------------------------------------------------------------------------------------------//
+
     public boolean eliminarUsuario(int idUsuario) {
         boolean respuesta = false; // Inicializa la variable de respuesta como false
         // SQL para eliminar un usuario basado en su ID
         String sql = "DELETE FROM tb_usuarios WHERE id_usuario=?";
 
         try {
-             // Establece la conexión a la base de datos
+            // Establece la conexión a la base de datos
             Connection cn = Conexion.conectar();
             // Prepara la consulta SQL para la eliminación de datos
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -193,13 +193,14 @@ public class Ctrl_Usuario {
             if (pst.executeUpdate() > 0) {
                 respuesta = true;  // Cambia la respuesta a true si la eliminación fue exitosa
             }
+            
             // Cierra la conexión a la base de datos
             cn.close();
         } catch (SQLException e) {
             // Captura y muestra cualquier excepción SQL que ocurra durante la ejecución
             System.out.println("Error al eliminar el usuario: " + e);
         }
-         // Retorna la respuesta indicando si la eliminación fue exitosa o no
+        // Retorna la respuesta indicando si la eliminación fue exitosa o no
         return respuesta;
     }
 
@@ -228,19 +229,18 @@ public class Ctrl_Usuario {
                 usuario.setEstatus(rs.getString("estatus"));
                 usuario.setRegistrado_por(rs.getString("registrado_por"));
                 usuario.setImagen(rs.getBytes("imagen"));
-               
-       
-            // Verificar si las fechas no son nulas antes de asignarlas
-            Date fechaCreacion = rs.getDate("fecha_creacion");
-            if (fechaCreacion != null) {
-                usuario.setFecha_creacion(fechaCreacion);
-            }
 
-            Date ultimaSesion = rs.getDate("ultima_sesion");
-            if (ultimaSesion != null) {
-                usuario.setUltima_sesion(ultimaSesion);
-            }
-                
+                // Verificar si las fechas no son nulas antes de asignarlas
+                Date fechaCreacion = rs.getDate("fecha_creacion");
+                if (fechaCreacion != null) {
+                    usuario.setFecha_creacion(fechaCreacion);
+                }
+
+                Date ultimaSesion = rs.getDate("ultima_sesion");
+                if (ultimaSesion != null) {
+                    usuario.setUltima_sesion(ultimaSesion);
+                }
+
             }
             cn.close();
         } catch (SQLException e) {
@@ -259,7 +259,7 @@ public class Ctrl_Usuario {
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(sql);
-            
+
             pst.setString(1, username);
             ResultSet rs = pst.executeQuery();
 
@@ -301,31 +301,52 @@ public class Ctrl_Usuario {
             // Manejo de excepciones
         }
     }
-    
-      /*
+
+    /*
  * ------------------------------------------------------------------------------------------------------------------------
  *                                               Método para obtener laimagen del usuario
  * ------------------------------------------------------------------------------------------------------------------------
      */
-
     public byte[] obtenerImagenUsuario(String username) {
-    byte[] imagen = null;
-     String sql = "SELECT imagen FROM tb_usuarios WHERE username = ?";
+        byte[] imagen = null;
+        String sql = "SELECT imagen FROM tb_usuarios WHERE username = ?";
 
-    try {
-       Connection cn = Conexion.conectar();
-       PreparedStatement pst = cn.prepareStatement(sql);
-       
-       pst.setString(1, username);
-       ResultSet rs = pst.executeQuery();
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement(sql);
 
-        if (rs.next()) {
-            imagen = rs.getBytes("imagen");
+            pst.setString(1, username);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                imagen = rs.getBytes("imagen");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } 
-    return imagen;
-}
+        return imagen;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------//
+    //                                                   Metodo para mostrar la cantidad de usuarios 
+    //---------------------------------------------------------------------------------------------------------------------//
+    public int contarUsuarios() {
+        int totalUsuarios = 0;
+        String sql = "SELECT  COUNT(*) AS total from tb_usuarios";
+
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalUsuarios = rs.getInt("total");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Maneja excepciones
+        }
+        return totalUsuarios; // Retorna el total de usuarios
+    }
+   
 
 }

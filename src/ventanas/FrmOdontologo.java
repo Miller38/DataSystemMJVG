@@ -298,6 +298,11 @@ public class FrmOdontologo extends javax.swing.JFrame {
 
         Cmb_genero.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cmb_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero", "Masculino", "Femenino", "Otro" }));
+        Cmb_genero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cmb_generoActionPerformed(evt);
+            }
+        });
         jPanel1.add(Cmb_genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -811,6 +816,10 @@ public class FrmOdontologo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jLabel_fotoMouseClicked
+
+    private void Cmb_generoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cmb_generoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cmb_generoActionPerformed
 
     /**
      * @param args the command line arguments

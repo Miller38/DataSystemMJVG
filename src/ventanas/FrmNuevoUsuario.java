@@ -59,6 +59,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         initComponents();
 
+        
+        
          jToggleButton1.setIcon(iconoLuna); // Ícono inicial
         
         String nombreUsuario = FrmLogin.getNombreUsuarioLogueado();
@@ -68,7 +70,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
 //         String tipoNivel = FrmLogin.getUsuarioTipoNivel();
 //         jLabel_TipoNivel.setText("Tipo Nivel :" + tipoNivel);
-        this.setSize(711, 528);
+        this.setSize(900, 512);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
@@ -145,7 +147,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Gestionar Usuarios");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         Btn_cerrar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_cerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -164,7 +166,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 Btn_cerrarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 50, -1));
+        getContentPane().add(Btn_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 50, -1));
 
         Btn_minimizar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_minimizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -183,7 +185,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 Btn_minimizarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 40, -1));
+        getContentPane().add(Btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 40, -1));
 
         jLabel_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_usuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,7 +194,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_TipoNivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_TipoNivel.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_TipoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 20));
-        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 50));
+        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 50));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -477,9 +479,9 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 50, 30));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 50, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 710, 480));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 900, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -494,6 +496,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private void Btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminarActionPerformed
         eliminarUsuario();
+        
     }//GEN-LAST:event_Btn_eliminarActionPerformed
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed

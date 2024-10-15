@@ -48,5 +48,6 @@ Haz clic en el siguiente enlace para ver un video demostrativo donde explicamos 
 
 ## Créditos.
 ## Designed by Milliany Tech ®2024
-Yuliet Faizul - 
+## Software Developer
+Yuliet Faizul Pachon Caro - 
 Jorge Miller Gutierrez Ospina
